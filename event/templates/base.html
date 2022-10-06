@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+
+    <title>Sports Maniac</title>
+    <!-- For external CSS -->
+    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index.css')}}" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo" width="230" height="40" id="logo" class="d-inline-block align-text-top">
+          </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+              </li>
+                <a class="nav-link " aria-current="page" href="create.html">Create event</a>
+              </li>
+                <a class="nav-link " aria-current="page" href="history.html">My booking</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ">Sign Up</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link ">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    </header>
+
+    {% block content %}
+    {% endblock %}
+    
+    <footer> 
+        <div class="footer">
+          <div class="row footerlist">
+            <!-- Footer email -->
+            <div class="footeremail col-lg-12" role="search">
+              <input
+                class="form-control me-2"
+                type="email"
+                placeholder="Your E-mail"
+              />
+              <button class="btn searchbtn" type="submit">
+                Subscribe 
+              </button>
+            </div>
+            <!-- List -->
+            <div class="row list">
+              <div class="col-md-4 footer-list">
+                <h3>Services</h3>
+                <ul>
+                  <li><a href="#">Web design</a></li>
+                  <li><a href="#">Development</a></li>
+                  <li><a href="#">Hosting</a></li>
+                </ul>
+              </div>
+              <div class="col-md-4 footer-list">
+                <h3>About</h3>
+                <ul>
+                  <li><a href="#">Company</a></li>
+                  <li><a href="#">Team</a></li>
+                  <li><a href="#">Legacy</a></li>
+                </ul>
+              </div>
+              <div class="col-md-4 footer-list">
+                <h3>Careers</h3>
+                <ul>
+                  <li><a href="#">Job openings</a></li>
+                  <li><a href="#">Employee success</a></li>
+                  <li><a href="#">Benefits</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <!-- Copy right -->
+            <div class="footercopyright col-lg-6">
+              <p class="copyright">Sumin Kim © 2022</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

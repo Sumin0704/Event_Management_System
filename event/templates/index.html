@@ -1,296 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    />
-
-    <title>Sports Maniac</title>
-    <!-- For external CSS -->
-    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index.css')}}" />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo" width="230" height="40" id="logo" class="d-inline-block align-text-top">
-          </a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <a class="nav-link " aria-current="page" href="index.html">Home</a>
-              </li>
-                <a class="nav-link " aria-current="page" href="create.html">Create event</a>
-              </li>
-                <a class="nav-link " aria-current="page" href="history.html">My booking</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ">Sign Up</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link ">Log In</a>
-              </li>
-             
-            </ul>
+{% extends 'base.html' %}
+  {% block content %}
+    <div class="container-fl">
+      <!-- row 1 search -->
+      <div class="row row-maincategory">
+          <div class="row-category col-sm-6 col-lg-8">
             
+            <button type="button" class="category "><a href="detail.html" class="category-links">NRL</a></button>
+            <button type="button" class="category  "><a href="detail.html" class="category-links">Boxing</a></button>
+            <button type="button" class="category  "><a href="detail.html" class="category-links">Tennis</a></button>
+            <button type="button" class="category "><a href="detail.html" class="category-links">Rugby</a></button>
           </div>
-        </div>
-      </nav>
-      
-    </header>
-
-    <main>
-      <div class="container-fl">
-        <!-- row 1 search -->
-        <div class="row row-maincategory">
-            <div class="row-category col-sm-6 col-lg-8">
-              
-              <button type="button" class="category "><a href="detail.html" class="category-links">NRL</a></button>
-              <button type="button" class="category  "><a href="detail.html" class="category-links">Boxing</a></button>
-              <button type="button" class="category  "><a href="detail.html" class="category-links">Tennis</a></button>
-              <button type="button" class="category "><a href="detail.html" class="category-links">Rugby</a></button>
-            </div>
-            <form class="d-flex col-sm-6  col-lg-4" role="search">
-            
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="Search the event"
-                  aria-label="Search"
-                />
-                <button class="btn searchbtn" type="submit">
-                  Search
-                </button>
-      
-  
-          </form>
-        </div>
-        <!-- row2 -->
-        <div class="container-f2">
-          <div class="row row-carousel">
-            <div class="col-12">
-              <!-- For Carousel-->
-              <div
-                id="carouselExampleControls"
-                class="carousel slide"
-                data-bs-ride="carousel"
-              >
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img
-                      src="{{url_for('static', filename='img/surfing_carousel.jpg')}}"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="{{url_for('static', filename='img/soccer_carousel.jpg')}}"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                  <div class="carousel-item">
-                    <img
-                      src="{{url_for('static', filename='img/swim_carousel.jpg')}}"
-                      class="d-block w-100"
-                      alt="..."
-                    />
-                  </div>
-                </div>
-                <button
-                  class="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#carouselExampleControls"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button
-                  class="carousel-control-next"
-                  type="button"
-                  data-bs-target="#carouselExampleControls"
-                  data-bs-slide="next"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- row 3 -->
-          <div class="row row-title">
-            <h3 class="title">Most Popular Events</h3>
-          </div>
-          <!-- row 4 evnets cards -->
-          <div class="row row-card">
-            <div class ="col-lg-4">
-              <div class="card">
-                <img
-                  src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                  class="card-img-top"
-
-                  alt="..."
-                />
-                <div class="container">
-                  <div class="row context first">
-                    <p class="card-title col main">QLD Open 2022 Tennis</p>
-                    <p class="card-title col" id="inactive">Inactive</p>
-                  </div>
-                  <div class="row context second">
-                    <p class="card-text col-sm-12">
-                      Sun, 25 Sept, 2:00 – 5:00 pm
-                    </p>
-                  </div>
-                  <div class="row context third">
-                    <p class="card-text col-sm-12">
-                      Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                    </p>
-                  </div>
-                  <div class="row context button">
-                  <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card">
-                <img
-                  src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="container">
-                  <div class="row context first">
-                    <p class="card-title col main">QLD Open 2022 Tennis  </p>
-                    <p class="card-title col " id="open">Open</p>
-                  </div>
-                  <div class="row context second">
-                    <p class="card-text col-sm-12">
-                      Sun, 25 Sept, 2:00 – 5:00 pm
-                    </p>
-                  </div>
-                  <div class="row context third">
-                    <p class="card-text col-sm-12">
-                      Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                    </p>
-                  </div>
-                  <div class="row context button">
-                  <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card">
-                <img
-                  src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="container">
-                  <div class="row context first">
-                    <p class="card-title col main">QLD Open 2022 Tennis </p>
-                    <p class="card-title col " id="cancelled">Cancelled</p>
-                  </div>
-                  <div class="row context second">
-                    <p class="card-text col-sm-12">
-                      Sun, 2 Oct, 7:30 – 9:00 pm
-                    </p>
-                  </div>
-                  <div class="row context third">
-                    <p class="card-text col-sm-12">
-                      Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                    </p>
-                  </div>
-                  <div class="row context button">
-                  <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    
-      <footer>
-        
-        <div class="footer">
-          <div class="row footerlist">
-            <!-- Footer email -->
-            <div class="footeremail col-lg-12" role="search">
+          <form class="d-flex col-sm-6  col-lg-4" role="search">
+          
               <input
                 class="form-control me-2"
-                type="email"
-                placeholder="Your E-mail"
+                type="search"
+                placeholder="Search the event"
+                aria-label="Search"
               />
               <button class="btn searchbtn" type="submit">
-                Subscribe 
+                Search
+              </button>
+    
+
+        </form>
+      </div>
+      <!-- row2 -->
+      <div class="container-f2">
+        <div class="row row-carousel">
+          <div class="col-12">
+            <!-- For Carousel-->
+            <div
+              id="carouselExampleControls"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img
+                    src="{{url_for('static', filename='img/surfing_carousel.jpg')}}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="{{url_for('static', filename='img/soccer_carousel.jpg')}}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="{{url_for('static', filename='img/swim_carousel.jpg')}}"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
               </button>
             </div>
-            <!-- List -->
-            <div class="row list">
-          
-              <div class="col-md-4 footer-list">
-                <h3>Services</h3>
-                <ul>
-                  <li><a href="#">Web design</a></li>
-                  <li><a href="#">Development</a></li>
-                  <li><a href="#">Hosting</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4 footer-list">
-                <h3>About</h3>
-                <ul>
-                  <li><a href="#">Company</a></li>
-                  <li><a href="#">Team</a></li>
-                  <li><a href="#">Legacy</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4 footer-list">
-                <h3>Careers</h3>
-                <ul>
-                  <li><a href="#">Job openings</a></li>
-                  <li><a href="#">Employee success</a></li>
-                  <li><a href="#">Benefits</a></li>
-                </ul>
+          </div>
+        </div>
+        <!-- row 3 -->
+        <div class="row row-title">
+          <h3 class="title">Most Popular Events</h3>
+        </div>
+        <!-- row 4 evnets cards -->
+        <div class="row row-card">
+          <div class ="col-lg-4">
+            <div class="card">
+              <img
+                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
+                class="card-img-top"
+
+                alt="..."
+              />
+              <div class="container">
+                <div class="row context first">
+                  <p class="card-title col main">QLD Open 2022 Tennis</p>
+                  <p class="card-title col" id="inactive">Inactive</p>
+                </div>
+                <div class="row context second">
+                  <p class="card-text col-sm-12">
+                    Sun, 25 Sept, 2:00 – 5:00 pm
+                  </p>
+                </div>
+                <div class="row context third">
+                  <p class="card-text col-sm-12">
+                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
+                  </p>
+                </div>
+                <div class="row context button">
+                <a href="detail.html" class="btn btn-coral">See the events</a>
+
+                </div>
               </div>
             </div>
-            <hr>
-            <!-- Copy right -->
-            
-            <div class="footercopyright col-lg-6">
-              <p class="copyright">Sumin Kim © 2022</p>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <img
+                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="container">
+                <div class="row context first">
+                  <p class="card-title col main">QLD Open 2022 Tennis  </p>
+                  <p class="card-title col " id="open">Open</p>
+                </div>
+                <div class="row context second">
+                  <p class="card-text col-sm-12">
+                    Sun, 25 Sept, 2:00 – 5:00 pm
+                  </p>
+                </div>
+                <div class="row context third">
+                  <p class="card-text col-sm-12">
+                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
+                  </p>
+                </div>
+                <div class="row context button">
+                <a href="detail.html" class="btn btn-coral">See the events</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <img
+                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="container">
+                <div class="row context first">
+                  <p class="card-title col main">QLD Open 2022 Tennis </p>
+                  <p class="card-title col " id="cancelled">Cancelled</p>
+                </div>
+                <div class="row context second">
+                  <p class="card-text col-sm-12">
+                    Sun, 2 Oct, 7:30 – 9:00 pm
+                  </p>
+                </div>
+                <div class="row context third">
+                  <p class="card-text col-sm-12">
+                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
+                  </p>
+                </div>
+                <div class="row context button">
+                <a href="detail.html" class="btn btn-coral">See the events</a>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      </footer>
-    
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+    </div>
+  {% endblock %}

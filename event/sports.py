@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for
 from .models import Sport, Comment
-from .forms import CommentForm
+from .forms import SportForm, CommentForm
+from . import db
 
 mainbp = Blueprint("sport", __name__, url_prefix="/sports")
 
@@ -21,6 +22,21 @@ def get_sport():
     tennis.add_comment(comment1)
     tennis.add_comment(comment2)
     return tennis
+
+# Create the Sport event route
+@mainbp.route("/create", methods=["GET"])
+def create():
+    print("Method type: ", request.method)
+    form = SportForm()
+    return render_template("create_form.html", form=form)
+
+@mainbp.route("/create", methods=["POST"])
+def createFormSubmission():
+    form = SportForm()
+    if form.validate_on_submit():
+        print("Success to create")
+        # Always end with redirect when form is valid
+        return redirect(url_for("sport.create"))
 
 @mainbp.route("/<id>/comment", methods=["POST"])
 def comment(id):

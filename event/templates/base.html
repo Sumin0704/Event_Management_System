@@ -14,8 +14,6 @@
     />
 
     <title>Sports Maniac</title>
-    <!-- For external CSS -->
-    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index.css')}}" />
   </head>
   <body>
     <header>
@@ -42,8 +40,28 @@
           </div>
         </div>
       </nav>
-      
     </header>
+          <div class="row row-maincategory">
+        <div class="row-category col-sm-6 col-lg-8">
+          
+          <button type="button" class="category "><a href="detail.html" class="category-links">NRL</a></button>
+          <button type="button" class="category  "><a href="detail.html" class="category-links">Boxing</a></button>
+          <button type="button" class="category  "><a href="detail.html" class="category-links">Tennis</a></button>
+          <button type="button" class="category "><a href="detail.html" class="category-links">Rugby</a></button>
+        </div>
+        <form class="d-flex col-sm-6  col-lg-4" role="search">
+        
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search the event"
+              aria-label="Search"
+            />
+            <button class="btn searchbtn" type="submit">
+              Search
+            </button>
+        </form>
+      </div>
 
     {% block content %}
     {% endblock %}

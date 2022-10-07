@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
+UPLOAD_FOLDER = "/static/img"
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +12,7 @@ def create_app():
 
     # Configue and initialise DB
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sport.sqlite"
+    app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     db.init_app(app)
 
     app.secret_key = 'junk'

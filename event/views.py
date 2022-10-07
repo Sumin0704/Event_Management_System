@@ -23,3 +23,7 @@ def logout():
 @mainbp.route("/history")
 def history():
     return render_template('history.html')
+
+@mainbp.route("/create")
+def create():
+    return render_template('create.html')

@@ -19,3 +19,7 @@ def handelLoginForm():
 def logout():
     session.pop("email")
     return "User logged out"
+
+@mainbp.route("/history")
+def history():
+    return render_template('history.html')

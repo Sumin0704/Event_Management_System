@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% import "bootstrap/form.html" as wtf %}
+
+{% block content %}
+{% block extra_head %}
+<!-- For external CSS -->
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/detail.css')}}" />
+{% endblock %}  
+  <div class="grid-container">
+  <div class="item1">
+        <h5 class="title">{{ sport.name }}</h5>
+        
+    </div>
+    <div class="item6">
+        <form class="d-flex form-inline" role="search">
+            <button class="btn searchbtn" type="submit">
+            Edit
+            </button>
+        </form>
+    </div>
+    <div class="item2 ">
+        <img src="{{url_for('static', filename='img/tennis_card.jpg')}}" class="img-boxing w-100" alt="...">
+    </div>
+    <div class="item3">
+        <p ><img src="node_modules/bootstrap-icons/icons/calendar3.svg" alt="">&nbsp &nbsp{{ sport.date }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/clock.svg" alt="">&nbsp &nbsp{{ sport.tiem }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/exclamation-circle.svg" alt="">&nbsp &nbsp{{ sport.status }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/currency-dollar.svg" alt="">&nbsp &nbsp{{ sport.price }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/geo-alt.svg" alt="">&nbsp &nbsp{{ sport.location }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/hand-thumbs-up.svg" alt="">&nbsp &nbsp{{ sport.rating }}</p>
+
+        
+    </div>  
+    <!-- description -->
+    <div class="item4">
+        <h5 class="list-title">About this Event</h5>
+        <p>{{ sport.description }}
+            <ul>
+                <li class="list-description">Cultural Performances</li>
+                <li class="list-description">CLucky Door Prizes</li>
+                <li class="list-description">Raffles</li>
+                <li class="list-description">Auction</li>
+            </ul>  
+        </p>
+    </div>
+    <div class="item7">
+        <div class="back-book">
+            
+            <button class="btn searchbtn"  type="button" >
+              Back
+            </button>
+            
+            <button class="btn searchbtn"  type="submit" class="btn searchbtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="book">
+              Book
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Do you want to make booking?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  
+                  <div class="modal-footer">
+                    <button type="button" class="btn searchbtn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn searchbtn" id="proceed">Proceed</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="item5">
+      <div class="comment">                      
+        <div class="card comment">
+            <div class="p-3">
+                <h5>Comments</h5>
+            </div>
+            <div class="row border-bottom">
+              {{wtf.render_form(form,"/sports/{0}/comment".format(1))}} 
+              {% for comment in sport.comments %} 
+              <div class="col-md-12">  
+                  <b>{{ comment.user }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.created_at }}</span>
+                  <p>{{ comment.text }}</p>  
+              </div>  
+              {% endfor %}
+            </div> 
+            <div class=" d-flex flex-row align-items-center p-3 form-color"> <img src="{{url_for('static', filename='img/reviewer_1.jpg')}}" width="50" class="rounded-circle mr-2"> <input type="text" class="form-control" placeholder="Enter your comment..."> </div>
+            <div >
+                <div class="d-flex flex-row p-3"> <img src="{{url_for('static', filename='img/reviewer_1.jpg')}}" width="40" height="40" class="rounded-circle mr-3">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-row align-items-center"> <span class="mr-2">Sumin Kim</span> </div> <small>10h ago</small>
+                        </div>
+                        <p class="text-justify comment-text mb-0">I highly recommend the event</p>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row p-3"> <img src="{{url_for('static', filename='img/reviewer_2.png')}}" width="40" height="40" class="rounded-circle mr-3">
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-row align-items-center"> <span class="mr-2">Sakshee</span> </div> <small>1h ago</small>
+                        </div>
+                        <p class="text-justify comment-text mb-0">Fantastic Event!!</p>
+                
+                    </div>
+                </div>
+            
+            </div>
+        </div>  
+      </div>
+    </div>
+
+     
+  </div>
+
+{% endblock %}
+
+

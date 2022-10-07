@@ -8,7 +8,7 @@
 {% endblock %}  
   <div class="grid-container">
   <div class="item1">
-        <h5 class="title">{{ sport.name }}</h5>
+        <h5 class="title">{{ event.name }}</h5>
         
     </div>
     <div class="item6">
@@ -22,19 +22,19 @@
         <img src="{{url_for('static', filename='img/tennis_card.jpg')}}" class="img-boxing w-100" alt="...">
     </div>
     <div class="item3">
-        <p ><img src="node_modules/bootstrap-icons/icons/calendar3.svg" alt="">&nbsp &nbsp{{ sport.date }}</p>
-        <p ><img src="node_modules/bootstrap-icons/icons/clock.svg" alt="">&nbsp &nbsp{{ sport.tiem }}</p>
-        <p ><img src="node_modules/bootstrap-icons/icons/exclamation-circle.svg" alt="">&nbsp &nbsp{{ sport.status }}</p>
-        <p ><img src="node_modules/bootstrap-icons/icons/currency-dollar.svg" alt="">&nbsp &nbsp{{ sport.price }}</p>
-        <p ><img src="node_modules/bootstrap-icons/icons/geo-alt.svg" alt="">&nbsp &nbsp{{ sport.location }}</p>
-        <p ><img src="node_modules/bootstrap-icons/icons/hand-thumbs-up.svg" alt="">&nbsp &nbsp{{ sport.rating }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/calendar3.svg" alt="">&nbsp &nbsp{{ event.date }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/clock.svg" alt="">&nbsp &nbsp{{ event.tiem }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/exclamation-circle.svg" alt="">&nbsp &nbsp{{ event.status }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/currency-dollar.svg" alt="">&nbsp &nbsp{{ event.price }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/geo-alt.svg" alt="">&nbsp &nbsp{{ event.location }}</p>
+        <p ><img src="node_modules/bootstrap-icons/icons/hand-thumbs-up.svg" alt="">&nbsp &nbsp{{ event.rating }}</p>
 
         
     </div>  
     <!-- description -->
     <div class="item4">
         <h5 class="list-title">About this Event</h5>
-        <p>{{ sport.description }}
+        <p>{{ event.description }}
             <ul>
                 <li class="list-description">Cultural Performances</li>
                 <li class="list-description">CLucky Door Prizes</li>
@@ -78,8 +78,8 @@
                 <h5>Comments</h5>
             </div>
             <div class="row border-bottom">
-              {{wtf.render_form(form,"/sports/{0}/comment".format(1))}} 
-              {% for comment in sport.comments %} 
+              {{wtf.render_form(form,"/events/{0}/comment".format(1))}} 
+              {% for comment in event.comments %} 
               <div class="col-md-12">  
                   <b>{{ comment.user }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.created_at }}</span>
                   <p>{{ comment.text }}</p>  

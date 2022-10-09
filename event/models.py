@@ -1,21 +1,21 @@
 # Create the table of DB
 from . import db
 from datetime import datetime
+from flask_login import UserMixin
 
-
-class User(db.Model):
-    __tablename__ = "user"
+class User(db.Model, UserMixin):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     email_address = db.Column(db.String(100), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
     # Adding the Foreign key
-    comment = db.relationship("Comment", backref="user")
+    comments = db.relationship("Comment", backref="user")
 
 
 class Event(db.Model):
-    __tablename__ = "event"
+    __tablename__ = "events"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     type = db.Column(db.String(10), nullable=False)
@@ -26,20 +26,20 @@ class Event(db.Model):
     price = db.Column(db.String(10), nullable=False)
 
     # Adding the Foreign key
-    comment = db.relationship("Comment", backref="event")
+    comments = db.relationship("Comment", backref="event")
 
     def __repr__(self):
         return "Name: {}".format(self.name)
 
 
 class Comment(db.Model):
-    __tablename__ = "comment"
+    __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(500))
     created_at = db.Column(db.DateTime, default=datetime.now())
     # Foreign keys
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    event_id = db.Column(db.Integer, db.ForeignKey("event.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    event_id = db.Column(db.Integer, db.ForeignKey("events.id"))
 
     def __repr__(self):
         return "Comment: {}".format(self.text)

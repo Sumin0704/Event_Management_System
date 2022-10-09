@@ -81,7 +81,7 @@
               {{wtf.render_form(form,"/events/{0}/comment".format(1))}} 
               {% for comment in event.comments %} 
               <div class="col-md-12">  
-                  <b>{{ comment.user }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.created_at }}</span>
+                  <b>{{ comment.user.name }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.created_at }}</span>
                   <p>{{ comment.text }}</p>  
               </div>  
               {% endfor %}

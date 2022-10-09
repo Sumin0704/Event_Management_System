@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
   
   {% block content %}
-  {% block extra_head %}
-  <!-- For external CSS -->
-  <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index.css')}}" />
-  {% endblock %}
+
     <div class="container-fl">
       <!-- row2 -->
       <div class="container-f2">
@@ -71,96 +68,23 @@
           <h3 class="title">Most Popular Events</h3>
         </div>
         <!-- row 4 evnets cards -->
-        <div class="row row-card">
-          <div class ="col-lg-4">
-            <div class="card">
-              <img
-                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                class="card-img-top"
-
-                alt="..."
-              />
-              <div class="container">
-                <div class="row context first">
-                  <p class="card-title col main">QLD Open 2022 Tennis</p>
-                  <p class="card-title col" id="inactive">Inactive</p>
+        <div class="card-group row">
+          {% for event in events %}
+          <div class="col-md-4 com-sm-6">
+             <div class="card">
+                <img class="card-img-top"
+                   src="{{ event.image }}" alt="{{ event.name }}">
+                <div class="card-body">
+                   <h5 class="card-title">{{ event.name }}</h5>
+                   <p class="card-text">{{ event.description }}</p>
                 </div>
-                <div class="row context second">
-                  <p class="card-text col-sm-12">
-                    Sun, 25 Sept, 2:00 – 5:00 pm
-                  </p>
+                <div class="card-footer">
+                   <a href = "{{url_for('event.show', id=event.id)}}" class ="btn btn-danger"> View Details </a>   
                 </div>
-                <div class="row context third">
-                  <p class="card-text col-sm-12">
-                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                  </p>
-                </div>
-                <div class="row context button">
-                <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                </div>
-              </div>
-            </div>
+             </div>
           </div>
-          <div class="col-lg-4">
-            <div class="card">
-              <img
-                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="container">
-                <div class="row context first">
-                  <p class="card-title col main">QLD Open 2022 Tennis  </p>
-                  <p class="card-title col " id="open">Open</p>
-                </div>
-                <div class="row context second">
-                  <p class="card-text col-sm-12">
-                    Sun, 25 Sept, 2:00 – 5:00 pm
-                  </p>
-                </div>
-                <div class="row context third">
-                  <p class="card-text col-sm-12">
-                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                  </p>
-                </div>
-                <div class="row context button">
-                <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card">
-              <img
-                src="{{url_for('static', filename='img/tennis_card.jpg')}}"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="container">
-                <div class="row context first">
-                  <p class="card-title col main">QLD Open 2022 Tennis </p>
-                  <p class="card-title col " id="cancelled">Cancelled</p>
-                </div>
-                <div class="row context second">
-                  <p class="card-text col-sm-12">
-                    Sun, 2 Oct, 7:30 – 9:00 pm
-                  </p>
-                </div>
-                <div class="row context third">
-                  <p class="card-text col-sm-12">
-                    Suncorp Stadium, 40 Castlemaine St, Milton QLD
-                  </p>
-                </div>
-                <div class="row context button">
-                <a href="detail.html" class="btn btn-coral">See the events</a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          {% endfor %}
+       </div>
       </div>
     </div>
   {% endblock %}

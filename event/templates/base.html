@@ -12,7 +12,7 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-
+    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index.css')}}" />
     <title>Sports Maniac</title>
   </head>
   <body>
@@ -23,20 +23,19 @@
             <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo" width="230" height="40" id="logo" class="d-inline-block align-text-top">
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <a class="nav-link " aria-current="page" href="index.html">Home</a>
-              </li>
-                <a class="nav-link " aria-current="page" href="create.html">Create event</a>
-              </li>
-                <a class="nav-link " aria-current="page" href="history.html">My booking</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link ">Sign Up</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link ">Log In</a>
-              </li>
-            </ul>
+            <div class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <a class="nav-item nav-link" href="#">Home</a>
+              <a class="nav-item nav-link" href="#">Bookings</a>
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+                <a class="nav-item nav-link disabled text-muted" href="#">Welcome {{current_user.name}}</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">Log In</a>
+                {% endif %}
+
+                
+            </div>
           </div>
         </div>
       </nav>

@@ -4,6 +4,7 @@ from .forms import EventForm, CommentForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
+from flask_login import login_required, current_user
 
 mainbp = Blueprint("event", __name__, url_prefix="/events")
 
@@ -16,7 +17,7 @@ def show(id):
     return render_template(
         "detail.html", event=event, form=commentForm
     )
-
+    
 # def get_event():
 #     tennis = Event("QLD Open 2022 Tennis", "hello.jpg", " Sat, 22 Oct", "5:00 – 11:30 pm", "Open(8tickets left)", "13.50(Aud)", "Kedron-Wavell Services Club 21 Kittyhawk Dr, Chermside QLD", "3.8/5.0",
 #     "Festival will held")
@@ -27,46 +28,45 @@ def show(id):
 #     return tennis
 
 # Create the Sport event route
-@mainbp.route("/create", methods=["GET"])
+@mainbp.route("/create", methods=["GET", "POST"])
+@login_required
 def create():
     print("Method type: ", request.method)
     form = EventForm()
-    return render_template("create_form.html", form=form)
-
-@mainbp.route("/create", methods=["POST"])
-def createFormSubmission():
-    form = EventForm()
-    db_file_path = check_upload_file(form)
     if form.validate_on_submit():
-        destination = Event(
-            name=form.name.data,
-            type=form.type.data,
-            location=form.location.data,
-            rating=form.rating.data,
-            description=form.description.data,
-            image=db_file_path,
-            price=form.price.data,   
+        # call the function that checks and returns image
+        db_file_path = check_upload_file(form)
+        event = Event(
+            name = form.name.data,
+            type = form.type.data,
+            location = form.location.data,
+            rating = form.rating.data,
+            description = form.description.data,
+            image = db_file_path,
+            price = form.price.data
         )
         # add the object to the db session
-        db.session.add(destination)
+        db.session.add(event)
         # commit to the database
         db.session.commit()
-        print("Successfully created new travel event", "success")
+        print("Successfully created new event", "success")
         # Always end with redirect when form is valid
         return redirect(url_for("event.create"))
+    return render_template("create_form.html", form=form)
 
-@mainbp.route("/<id>/comment", methods=["POST"])
+@mainbp.route("/<id>/comment", methods = ['GET', 'POST'])
+@login_required
 def comment(id):
     # here the form is created  form = CommentForm()
     commentForm = CommentForm()
     # get the event object associated to the page and the comment
     event_obj = Event.query.filter_by(id=id).first()
     if commentForm.validate_on_submit():  # this is true only in case of POST method
-        comment = Comment(text=commentForm.text.data, event=event_obj)
+        comment = Comment(text=commentForm.text.data, event=event_obj, user=current_user)
         db.session.add(comment)
         db.session.commit()
     # notice the signature of url_for
-    return redirect(url_for("evnet.show", id=1))
+    return redirect(url_for("event.show", id=id))
 
 def check_upload_file(form):
     # get file data from form

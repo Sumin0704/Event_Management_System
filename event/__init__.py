@@ -1,13 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
 db = SQLAlchemy()
 UPLOAD_FOLDER = "/static/img"
+app = Flask(__name__)
 
 def create_app():
-    app = Flask(__name__)
+    
 
     # access to authentication
     login_manager = LoginManager()
@@ -40,3 +41,7 @@ def create_app():
 
     return app
 
+@app.errorhandler(404)
+# inbuilt function which takes error as parameter
+def not_found(e):
+    return render_template("404.html")

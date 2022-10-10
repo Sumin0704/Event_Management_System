@@ -2,7 +2,6 @@
   margin: 20px;
 }
 
-
 /* Fix the image size when carousel slides are chaged */
 img.d-block.w-100 {
   width: 800px;
@@ -227,4 +226,24 @@ li {
     margin-right: 0px;
     
   }
+}
+
+.row.mt-5{
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-label,.form-title,.form-button{
+  color: coral;
+  border-color: coral;
+}
+
+.btn.form-button:hover {
+  background-color: coral;
+  color: white;
+  border-color: coral;
+}
+
+.form-format {
+  border-radius: 10px;
 }

@@ -31,7 +31,7 @@ class RegisterForm(FlaskForm):
 
 
 class EventForm(FlaskForm):
-  name = StringField("Evnet Name", validators=[InputRequired()])
+  name = StringField("Event Name", validators=[InputRequired()])
   # adding two validators, one to ensure input is entered and other to check if the
   # description meets the length requirements
   type = StringField("Event Type", validators=[InputRequired()])
@@ -51,3 +51,5 @@ class EventForm(FlaskForm):
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
   submit = SubmitField('Post')
+
+# need a buy tickets form

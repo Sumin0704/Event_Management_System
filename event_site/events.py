@@ -6,6 +6,8 @@ import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
 
+# 1st change
+
 mainbp = Blueprint("event", __name__, url_prefix="/events")
 
 @mainbp.route("/<id>")
@@ -13,7 +15,7 @@ def show(id):
     # event = get_event()
     # brazil = get_destination()
     commentForm = CommentForm()
-    event = Event.query.filter_by(id=id).first()
+    event = Event.query.filter_by(event_id=id).first()
     return render_template(
         "detail.jinja", event=event, form=commentForm
     )
@@ -37,13 +39,13 @@ def create():
         # call the function that checks and returns image
         db_file_path = check_upload_file(form)
         event = Event(
-            name = form.name.data,
-            type = form.type.data,
-            location = form.location.data,
-            rating = form.rating.data,
-            description = form.description.data,
-            image = db_file_path,
-            price = form.price.data
+            event_name = form.name.data,
+            event_type = form.type.data,
+            event_location = form.location.data,
+            event_rating = form.rating.data,
+            event_description = form.description.data,
+            event_image = db_file_path,
+            event_price = form.price.data
         )
         # add the object to the db session
         db.session.add(event)
@@ -60,9 +62,9 @@ def comment(id):
     # here the form is created  form = CommentForm()
     commentForm = CommentForm()
     # get the event object associated to the page and the comment
-    event_obj = Event.query.filter_by(id=id).first()
+    event_obj = Event.query.filter_by(event_id=id).first()
     if commentForm.validate_on_submit():  # this is true only in case of POST method
-        comment = Comment(text=commentForm.text.data, event=event_obj, user=current_user)
+        comment = Comment(comment_text=commentForm.text.data, event=event_obj, user=current_user)
         db.session.add(comment)
         db.session.commit()
     # notice the signature of url_for

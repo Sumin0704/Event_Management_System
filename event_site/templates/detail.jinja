@@ -1,0 +1,136 @@
+{%extends 'base.jinja'%}
+
+{%block title%}{{event.name}}{%endblock%}
+{%block filterPanel%}
+{%endblock%}
+
+{%block content%}
+<div class="row justify-content-center align-items-start">
+                <div class="col-12 col-lg-8" style="max-width: 70rem;">
+                    <h1>{{event.title}} ({{event.date_time}})</h1>
+                    {%if event.state == 'open'%}
+                    <span type="button" class="btn btn-outline-secondary"
+                        style=" border-color: #519949; background-color: #081907;" data-bs-toggle="button">Open</span>
+                        {%endif%}
+                    <span type="button" class="btn btn-outline-secondary"
+                        style=" border-color: #494d99; background-color: #070819;" data-bs-toggle="button">{{event.club}}</span>
+                        {%for but in event.tags%}
+                    <span type="button" class="btn btn-outline-secondary" style="background-color: #100719;"
+                        data-bs-toggle="button">but</span>
+                        {%endfor%}
+                    <div class="card event-card" id="details-card">
+                        <img class="card-img-top" src="{{url_for('static', filename='/img/00163-555379670-technology, socialization , Simon Stalenhag.png')}}" alt="Title"
+                            style="max-width: 1000px;">
+                        <div class="card-body">
+                            <h4 class="card-title">{{event.subtitle}}</h4>
+                            <div class="card-text">
+                                {{event.body}}
+                            </div>
+                            <div class="card-footer text-muted">
+                                Last updated {{event.last_updated}} ago, created by '{{event.author}}'
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xl-4" style="max-width: 35rem;">
+                    <div class="card event-card" id="details-card" style="margin-top: 2rem;">
+                        <div class="card-body">
+                            <h4 class="card-title"><b>Buy Tickets</b></h4>
+                            <div class="card-text d-flex flex-column align-items-center">
+                                <h5 class="cost-text">
+                                    ${{event.cost}}
+                                </h5>
+                                <br>
+                                <p class="bottom-text" style="margin-top: 1rem;">{{event.ticket_quantity}}</p>
+                                <p class="bottom-text">Tickets Left</p>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex felx-direction-row ">
+
+                            <div class="input-group mb-3 " style="padding-top: 0.8rem;">
+                                <button class="btn btn-outline-info" type="button" id="minus-button"><i
+                                        class="bi bi-dash"></i></button>
+                                <input type="text" class="form-control input-number" value="1"
+                                    aria-label="Ticket Quanitity" aria-describedby="plus-button" id="Ticket-quantity">
+                                <button class="btn btn-outline-info" type="button" id="plus-button"><i
+                                        class="bi bi-plus"></i></button>
+                            </div>
+                            <a type="button" class="btn btn-outline-secondary col-5 text-center" href="#"
+                                style="border-color: #519949; background-color: #081907; padding-top: 0.5rem;">
+                                <h4 style="font-weight: bold;">Buy</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row justify-content-center align-items-start">
+                <div class="col-12 col-lg-8" style="max-width: 70rem;">
+                    <h2 style="font-weight: bold; color: white;">Comments</h2>
+                    <div class="card event-card" id="details-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="form-floating col">
+                                    <textarea class="form-control" style="background-color: #070819; color: white;"
+                                        placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                    <label for="floatingTextarea">Write your comment here</label>
+                                </div>
+                                <a type="button" class="btn btn-outline-secondary col-lg-4 col-xxl-2" href="#"
+                                    style="border-color: #519949; background-color: #081907; padding-top: 0.5rem;">
+                                    <h4 style="font-weight: bold;">Post</h4>
+                                </a>
+                            </div>
+                            <div id="commentHelp" class="form-text">
+                                Logged in as '{{current_user.name}}'
+                            </div>
+                        </div>
+                        {%for comment in event.comments%}
+                        <div class="card-body border-top row"
+                            style="margin-right:1rem;margin-left: 1rem; border-color: #6e4999!important;">
+                            <div class="col">
+                                <h3>{{comment.user.name}}</h3>
+                                <p>{{comment.text}}</p>
+                            </div>
+                            <div class="col text-end ">
+                                <p class="text-muted">{{comment.timestamp}}</p>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        <div class="card-body border-top row"
+                            style="margin-right:1rem;margin-left: 1rem; border-color: #6e4999!important;">
+                            <div class="col">
+                                <h3>Username2</h3>
+                                <p>Comment comment, this is another comment.</p>
+                            </div>
+                            <div class="col text-end ">
+                                <p class="text-muted">26/08/22</p>
+                            </div>
+                        </div>
+                        <div class="card-body border-top row"
+                            style="margin-right:1rem;margin-left: 1rem; border-color: #6e4999!important;">
+                            <div class="col">
+                                <h3>Username1</h3>
+                                <p>What a wonderful day to make a comment</p>
+                            </div>
+                            <div class="col text-end ">
+                                <p class="text-muted">24/08/22</p>
+                            </div>
+                        </div>
+                        <div class="card-body border-top row"
+                            style="margin-right:1rem;margin-left: 1rem; border-color: #6e4999!important;">
+                            <div class="col">
+                                <h3>Username</h3>
+                                <p>Comment comment, this is a comment.</p>
+                            </div>
+                            <div class="col text-end ">
+                                <p class="text-muted">24/08/22</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{%endblock%}
+

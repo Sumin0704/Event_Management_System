@@ -7,7 +7,7 @@ mainbp = Blueprint("main",__name__)
 @mainbp.route("/")
 def index():
     events = Event.query.all()
-    return render_template("index.html", events=events)
+    return render_template("index.jinja", events=events)
 
 @mainbp.route("/history")
 def history():

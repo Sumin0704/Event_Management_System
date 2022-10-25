@@ -15,7 +15,7 @@ def show(id):
     commentForm = CommentForm()
     event = Event.query.filter_by(id=id).first()
     return render_template(
-        "detail.html", event=event, form=commentForm
+        "detail.jinja", event=event, form=commentForm
     )
     
 # def get_event():

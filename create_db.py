@@ -1,4 +1,4 @@
-from event import db, create_app
+from event_site import db, create_app
 
 app = create_app()
 ctx = app.app_context()

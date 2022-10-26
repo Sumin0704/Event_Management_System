@@ -14,7 +14,8 @@ class User(db.Model, UserMixin):
 
     # Adding the Foreign key
     comments = db.relationship("Comment", backref="user") # means I can do user.comments to get all comments for a user
-
+    events = db.relationship('Event', backref='user')
+    # bookings = db.relationship('Bookings', backref='user')
 
 class Event(db.Model):
     __tablename__ = "events"
@@ -25,18 +26,17 @@ class Event(db.Model):
     event_rating = db.Column(db.String(200), nullable=False)
     event_description = db.Column(db.String(500), index=True, nullable=False)
     event_image = db.Column(db.String(200), nullable=False)
-    event_StartDate = db.Column(db.String(20), nullable=False) # do this
-    event_StartTime = db.Column(db.String(20), nullable=False) # do this
-    event_EndDate = db.Column(db.String(20), nullable=True) # do this
-    event_EndTime = db.Column(db.String(20), nullable=True) # do this
-    event_price = db.Column(db.String(10), nullable=True)
-    event_TicketsAvaliable = db.Column(db.String(10), nullable=True) # do this
+    event_StartDateTime = db.Column(db.DateTime, nullable=False) # do this
+    event_EndDateTime = db.Column(db.DateTime, nullable=False) # do this
+    # event_price = db.Column(db.Numeric(10,2), nullable=False)
+    event_TicketsAvailable = db.Column(db.Integer, nullable=False) # do this
 
     # Adding the Foreign key
+    event_creator = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.relationship("Comment", backref="event") # means I can do event.comments to get all comments on an event
 
     def __repr__(self):
-        return "Name: {}".format(self.name)
+        return "Name: {}".format(self.event_name)
 
 
 class Comment(db.Model):
@@ -55,10 +55,10 @@ class Comment(db.Model):
 class Order(db.Model):
     __tablename__ = "orders"
     order_RefNumber = db.Column(db.Integer, primary_key=True)
-    order_totalValue = db.Column(db.Integer)
+    # order_totalValue = db.Column(db.Integer)
     order_numTickets = db.Column(db.Integer)
     order_dateTime = db.Column(db.DateTime, default=datetime.now())
-    
+
     # Foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     event_id = db.Column(db.Integer, db.ForeignKey("events.event_id"))

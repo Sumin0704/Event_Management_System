@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField, FileRequired
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 
 
@@ -17,6 +17,8 @@ class RegisterForm(FlaskForm):
     email_id = StringField(
         "Email Address", validators=[Email("Please enter a valid email")]
     )
+    user_address = StringField("User Address", validators=[InputRequired()])
+    user_phone = StringField("User Phone", validators=[InputRequired()])
     # linking two fields - password should be equal to data entered in confirm
     password = PasswordField(
         "Password",
@@ -45,11 +47,16 @@ class EventForm(FlaskForm):
             FileAllowed(ALLOWED_FILE, message="Only supports png,jpg,JPG,PNG"),
         ],
     )
-  price = StringField("Price", validators=[InputRequired()])
+#   price = DecimalField("Single Ticket Price", places=2, validators=[InputRequired()])
+  startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
+  endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
+  ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired()])
   submit = SubmitField("Create")
 
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()])
   submit = SubmitField('Post')
 
-# need a buy tickets form
+class OrderForm(FlaskForm):
+    order_num_tickets = IntegerField("Ticket Quantity",validators=[InputRequired()])
+    submit = SubmitField('Order')

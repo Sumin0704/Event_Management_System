@@ -1,0 +1,231 @@
+.row {
+  margin: 20px;
+}
+
+
+/* Fix the image size when carousel slides are chaged */
+img.d-block.w-100 {
+  width: 800px;
+  height: 500px;
+  object-fit: fill;
+}
+.footeremail {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.subscribebtn {
+  border-radius: 4px;
+  background-color: coral;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px;
+  width: 120px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  height: 30px;
+}
+
+.subscribebtn span {
+  cursor: pointer;
+  position: relative;
+  transition: 0.5s;
+}
+
+.subscribebtn span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.subscribebtn:hover span {
+  padding-right: 25px;
+}
+
+.subscribebtn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+input.form-control.me-2 {
+  height: 30px;
+  width: 400px;
+  margin: 5px;
+  margin-left: 0px;
+}
+
+.footer {
+  color: #f0f9ff;
+  background-color: #282d32;
+}
+
+.footer h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.footer ul {
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.footer ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer ul a:hover {
+  opacity: 1;
+}
+.footercopyright {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  height: 504px;
+  margin-bottom: 10px;
+}
+.footerlist {
+  margin: 0px 20px;
+  justify-content: center;
+}
+h3,
+li {
+  text-align: center;
+}
+.card-img-top {
+  height: 300px;
+}
+.card-title.col.main {
+  font-size: 20px;
+  font-weight: bold;
+}
+.row.context.first {
+  margin: 10px 0px 0px 0px;
+}
+.row.context.second {
+  margin: 0px;
+  color: coral;
+}
+.row.context.third {
+  margin: 10px 0px 0px 0px;
+  color: cornflowerblue;
+}
+.row.context.button {
+  margin: 10px;
+}
+.btn.btn-coral {
+  margin: 2px;
+  background-color: coral;
+  color: white;
+}
+#open {
+  color: green;
+  text-align: right;
+  font-size: small;
+}
+#inactive {
+  color: darkorange;
+  text-align: right;
+  font-size: small;
+}
+#cancelled {
+  color: crimson;
+  text-align: right;
+  font-size: small;
+}
+.row.row-title {
+  margin: 20px 20px 5px 20px;
+}
+.title {
+  color: coral;
+  text-align: left;
+  margin-bottom: 0px;
+}
+.row.row-card {
+  margin-top: 10px;
+}
+
+.row.row-carousel {
+  margin-top: 5px;
+}
+.btn.searchbtn {
+  border: 1px solid coral;
+  background-color: coral;
+  color: white;
+  padding: 0px 6px;
+  font-size: 15px;
+  font-weight: 300;
+  cursor: pointer;
+  height: 31px;
+  margin: 5px 0px;
+}
+.btn.searchbtn:hover {
+  background-color: white;
+  color: coral;
+}
+
+.category {
+  border: white;
+  background-color: white;
+  color: coral;
+  padding: 0px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 15%;
+}
+.row-category {
+  display: flex;
+  justify-content: space-between;
+}
+.d-flex {
+  display: inline-block;
+  justify-content: center;
+}
+
+.navbar.navbar-expand-lg {
+  background-color: coral;
+}
+.nav-link {
+  color: white;
+}
+.row.row-maincategory {
+  margin-bottom: 0px;
+}
+#main_search{
+  padding-right: 0px;
+}
+.col-md-4.footer-list {
+  margin-bottom: 12px;
+}
+.category-links {
+  color: coral;
+  text-decoration:none;
+}
+.container-f2 {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container-f2{
+    
+    margin-left: 0px;
+    margin-right: 0px;
+    
+  }
+}

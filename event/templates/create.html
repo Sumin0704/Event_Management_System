@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+  
+  {% block content %}
+  {% block extra_head %}
+  <!-- For external CSS -->
+  <link rel="stylesheet" href= "{{ url_for('static',filename='styles/create.css')}}" />
+  {% endblock %}
+    <div class="container-fl">
+      <div class="container-f2">
+        <div id="create-maintitle">
+            <h4 class="main_title">Plan Your Event</h4>
+        </div>
+        <div class="grid-container create">
+          <div class="item1">
+              <h5 class="title">Event Details</h5>
+          </div>
+          <div class="item2 ">
+              <label class="event-detail">Event Name</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+          </div>
+          <div class="item3 ">
+              <label class="event-detail">Event Type</label>
+              <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>NRL</option>
+                  <option>Boxing</option>
+                  <option>Tennis</option>
+                  <option>Soccer</option>
+                  <option>etc...</option>
+              </select>
+          </div>
+          <div class="item4">
+              <label class="event-detail">Event Date</label>
+              <div class="input-group date" id="datepicker">
+                  <input type="text" class="form-control" id="date" placeholder="dd-mm-yy"/>
+                  <span class="input-group-append">
+                    <span class="input-group-text bg-light d-block">
+                      <i class="fa fa-calendar"></i>
+                    </span>
+                  </span>
+              </div>
+          </div>   
+          <div class="item5">
+              <label class="event-detail">Event Time</label>
+              <div class="cs-form">
+                  <input type="time" class="form-control" value="10:05 AM" />
+              </div>  
+          </div>  
+          <div class="item6">
+              <label class="event-detail">Availabilty</label>
+              <div class="input-group">
+                  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                  <span class="input-group-text">tickets</span>
+              </div>
+              <div class="status">
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                      <label class="form-check-label" id="open" for="inlineRadio1">Open</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                      <label class="form-check-label" id="inactive" for="inlineRadio2">Inactive</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                      <label class="form-check-label"  id="soldout" for="inlineRadio3">Sold Out</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                      <label class="form-check-label" id="cancelled" for="inlineRadio3">Cancelled</label>
+                  </div>
+              </div>
+          </div>   
+          <div class="item7">
+              <label class="event-detail">Price</label>
+              <div class="input-group mb-3">
+                  <span class="input-group-text">Aud</span>
+                  <span class="input-group-text">$</span>
+                  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                </div>
+          </div>
+          <div class="item8">
+              <label class="event-detail">Location</label>
+              <div class="row g-3">
+                  <div class="col-12" id="first-address">
+                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" placeholder="City" aria-label="City">
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control"  placeholder="State" aria-label="State">
+                  </div>
+                  <div class="col-sm-3">
+                    <input type="text" class="form-control" id="zip" placeholder="Zip" aria-label="Zip">
+                  </div>
+                </div>
+          </div>   
+          <div class="item9">
+              <label class="event-detail ">Photo</label>
+              <div class="input-group mb-3">
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+          </div>      
+          <div class="item10">
+              <label class="event-detail ">Description</label>
+              <textarea class="form-control" id="text" rows="3"></textarea>
+              <div class="cancel-create">
+                  <input class="btn cancel" type="button" value="Cancel">
+                  <input class="btn create" type="submit" value="Create">
+              </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  {% endblock %} 

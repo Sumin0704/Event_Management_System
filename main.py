@@ -1,4 +1,4 @@
-from event_site import create_app
+from event import create_app
 
 if __name__=='__main__':
     n_app=create_app()

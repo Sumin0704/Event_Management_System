@@ -28,9 +28,9 @@ class Event(db.Model):
     event_image = db.Column(db.String(200), nullable=False)
     event_StartDateTime = db.Column(db.DateTime, nullable=False) # do this
     event_EndDateTime = db.Column(db.DateTime, nullable=False) # do this
-    # event_price = db.Column(db.Numeric(10,2), nullable=False)
+    event_TicketPrice = db.Column(db.Numeric(10,2), nullable=False)
     event_TicketsAvailable = db.Column(db.Integer, nullable=False) # do this
-
+    # event_Status
     # Adding the Foreign key
     event_creator = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.relationship("Comment", backref="event") # means I can do event.comments to get all comments on an event
@@ -61,12 +61,4 @@ class Order(db.Model):
 
     # Foreign keys
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    event_id = db.Column(db.Integer, db.ForeignKey("events.event_id"))
-
-class EventStatus(db.Model):
-    __tablename__ = "event status"
-    eventStatus_id = db.Column(db.Integer, primary_key=True)
-    eventStatus_value = db.Column(db.String(500), nullable=True) # do this
-
-    # Foreign keys
     event_id = db.Column(db.Integer, db.ForeignKey("events.event_id"))

@@ -5,64 +5,22 @@
     <div class="container-fl">
       <!-- row2 -->
       <div class="container-f2">
-        <div class="row row-carousel">
-          <div class="col-12">
-            <!-- For Carousel-->
-            <div
-              id="carouselExampleControls"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    src="{{url_for('static', filename='img/surfing_carousel.jpg')}}"
-                    class="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="{{url_for('static', filename='img/soccer_carousel.jpg')}}"
-                    class="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div class="carousel-item">
-                  <img
-                    src="{{url_for('static', filename='img/swim_carousel.jpg')}}"
-                    class="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+        
+        <!-- flashes any messages to the user -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %} <!-- check if there are any messages -->
+          <div class="container-fluid">
+            <div class="row mt-3 mb-3">
+              <div class="col-md-12">
+              {% for message in messages %} <!--loop through the messages-->
+                <div class="alert alert-info">{{ message }}</div> <!--display as alert-->
+              {% endfor %}
             </div>
           </div>
         </div>
+        {% endif %}
+        {% endwith %}
+        
         <!-- row 3 -->
         <div class="row row-title">
           <h3 class="title">Upcoming Events</h3>

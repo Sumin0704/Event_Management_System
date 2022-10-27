@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import Event, Order, EventStatus, User
 from flask_login import login_required, current_user
 from .forms import OrderForm
 from datetime import datetime
 from . import db
+from sqlalchemy import desc
 
 
 
@@ -25,6 +26,9 @@ def place(id):
         db.session.add(order) # add the object to the db session
         db.session.commit() # commit to the database
         print("Successfully place new order", "success")
+        orderRef = str(Order.query.filter_by().first().order_RefNumber)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ str(orderRef))
+        flash("Order Placed Successfully Ref: " + orderRef)
         return redirect(url_for("main.index")) # Always end with redirect when form is valid
     return redirect(url_for("event.show", id=id))
 

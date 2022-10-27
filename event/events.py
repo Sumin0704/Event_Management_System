@@ -1,33 +1,22 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for
 from .models import Event, Comment
-from .forms import EventForm, CommentForm
+from .forms import EventForm, CommentForm, OrderForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
-
-# 1st change
+from datetime import datetime
 
 mainbp = Blueprint("event", __name__, url_prefix="/events")
 
 @mainbp.route("/<id>")
 def show(id):
-    # event = get_event()
-    # brazil = get_destination()
     commentForm = CommentForm()
+    orderForm = OrderForm()
     event = Event.query.filter_by(event_id=id).first()
     return render_template(
-        "detail.html", event=event, form=commentForm
+        "detail.html", event=event, commentForm=commentForm, orderForm=orderForm
     )
-    
-# def get_event():
-#     tennis = Event("QLD Open 2022 Tennis", "hello.jpg", " Sat, 22 Oct", "5:00 – 11:30 pm", "Open(8tickets left)", "13.50(Aud)", "Kedron-Wavell Services Club 21 Kittyhawk Dr, Chermside QLD", "3.8/5.0",
-#     "Festival will held")
-#     comment1 = Comment("Sumin", "I like to go there agian", "12:00:00")
-#     comment2 = Comment("Jenny", "It's dangerous", "12:05:10")
-#     tennis.add_comment(comment1)
-#     tennis.add_comment(comment2)
-#     return tennis
 
 # Create the Sport event route
 @mainbp.route("/create", methods=["GET", "POST"])
@@ -45,7 +34,11 @@ def create():
             event_rating = form.rating.data,
             event_description = form.description.data,
             event_image = db_file_path,
-            event_price = form.price.data
+            event_StartDateTime = form.startDateTime.data,
+            event_EndDateTime = form.endDateTime.data,
+            # event_price = form.price.data,
+            event_TicketsAvailable = form.ticketsAvailable.data,
+            user=current_user
         )
         # add the object to the db session
         db.session.add(event)
@@ -53,7 +46,7 @@ def create():
         db.session.commit()
         print("Successfully created new event", "success")
         # Always end with redirect when form is valid
-        return redirect(url_for("event.create"))
+        return redirect(url_for("main.index"))
     return render_template("create_form.html", form=form)
 
 @mainbp.route("/<id>/comment", methods = ['GET', 'POST'])
@@ -63,8 +56,13 @@ def comment(id):
     commentForm = CommentForm()
     # get the event object associated to the page and the comment
     event_obj = Event.query.filter_by(event_id=id).first()
-    if commentForm.validate_on_submit():  # this is true only in case of POST method
-        comment = Comment(comment_text=commentForm.text.data, event=event_obj, user=current_user)
+    if commentForm.validate_on_submit(): # this is true only in case of POST method
+        comment = Comment(
+            comment_text=commentForm.text.data,
+            comment_created_at = datetime.now(),
+            event=event_obj,
+            user=current_user,
+        )
         db.session.add(comment)
         db.session.commit()
     # notice the signature of url_for
@@ -83,3 +81,12 @@ def check_upload_file(form):
     # save the file and return the db upload path
     fp.save(upload_path)
     return db_upload_path
+
+
+@mainbp.route("/book/<eventid>", methods=["GET", "POST"])
+@login_required
+def book(eventid):
+    orderForm = OrderForm()
+    commentForm = CommentForm()
+    eventinfo = Event.query.filter_by(event_id=eventid).first()
+    return render_template('book_tickets.html',eventinfo=eventinfo, orderForm=orderForm, commentForm=commentForm)

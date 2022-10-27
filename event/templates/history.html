@@ -7,7 +7,25 @@
   {% endblock %}
     <div class="grid-container">
         <div id="create-maintitle">
-          <h4 class="booking_title">My booking</h4>
+          <h4 class="booking_title">My bookings</h4>
+          <div class="card-group row">
+            {% for event in myevents %}
+            <!-- <p>{{event.event_name}}</p> -->
+            <div class="col-md-4 com-sm-6">
+               <div class="card">
+                  <img class="card-img-top"
+                     src="{{ event.event_image }}">
+                  <div class="card-body">
+                     <h5 class="card-title">{{ event.event_name }}</h5>
+                     <p class="card-text">{{ event.event_description }}</p>
+                  </div>
+                  <div class="card-footer">
+                     <a href = "{{url_for('event.show', id=event.event_id)}}" class ="btn btn-danger"> View Details </a>   
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
         </div>
         <div class="card mb-3">
           <div class="row ">

@@ -88,6 +88,6 @@ def check_upload_file(form):
 @login_required
 def book(eventid):
     orderForm = OrderForm()
-    commentForm = CommentForm()
+    commentForm = CommentForm() # dont include this eventually
     eventinfo = Event.query.filter_by(event_id=eventid).first()
     return render_template('book_tickets.html',eventinfo=eventinfo, orderForm=orderForm, commentForm=commentForm)

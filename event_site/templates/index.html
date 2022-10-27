@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{%block title%}Index{%endblock%}
+
+
+{%block content%}
+    <div class="col-12  col-sm-12  col-lg-7 col-xl-9">
+        <h1>Upcoming Events</h1>
+        {%for event in events%}
+            <!--Event card start-->
+            <div class="card mb-3 event-card" style="max-width: 1000px;">
+                <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="{{url_for('static', filename='/img/00163-555379670-technology, socialization , Simon Stalenhag.png')}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{{url_for('event.show', id=event.event_id)}}" class="stretched-link">{{event.event_name}}</a></h3>
+                        <p class="card-text">{{event.event_description}}</p>
+                        <div>
+                            <button type="button" class="btn btn-outline-secondary">{{event.event_type}}</button>
+                            <!-- {%for but in event.tags%}
+                                <button type="button"class="btn btn-outline-secondary">{{but}}</button>
+                            {%endfor%} -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center  text-white d-flex flex-column justify-content-center " style="background-color: #a37bd1;">
+
+                        <!-- <h2><b>${{event.cost}}t</b></h2> -->
+                        <!-- <h5 style="color: aquamarine;">{{event.status}}</h5> -->
+                        <p>{{event.event_StartDateTime}}</p>
+
+                </div>
+            </div>
+        {%endfor%}
+    </div>  
+{%endblock%}

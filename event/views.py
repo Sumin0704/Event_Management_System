@@ -10,6 +10,10 @@ def index():
     events = Event.query.all()
     return render_template("index.html", events=events)
 
+<<<<<<< HEAD:event/views.py
+=======
+
+>>>>>>> 601aa72842180506af81f5063917872858f7d94c:event_site/views.py
 @mainbp.route("/myevents")
 @login_required
 def myEvents():

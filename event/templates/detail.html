@@ -42,7 +42,7 @@
                 <h5>Comments</h5>
             </div>
             <div class="row border-bottom">
-              {{wtf.render_form(commentForm,"/events/{0}/comment".format(1))}} 
+              {{wtf.render_form(commentForm,"/events/{0}/comment".format(event.event_id))}} 
               {% for comment in event.comments %} 
               <div class="col-md-12">  
                   <b>{{ comment.user.user_name }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.comment_created_at }}</span>

@@ -52,6 +52,7 @@ def create():
 @mainbp.route("/<id>/comment", methods = ['GET', 'POST'])
 @login_required
 def comment(id):
+    print(id)
     # here the form is created  form = CommentForm()
     commentForm = CommentForm()
     # get the event object associated to the page and the comment

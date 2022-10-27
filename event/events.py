@@ -14,6 +14,11 @@ def show(id):
     commentForm = CommentForm()
     orderForm = OrderForm()
     event = Event.query.filter_by(event_id=id).first()
+    # status = event.event_Status
+    # if status == "Cancelled":
+    #     flash("This event has been cancelled and can no longer be booked")
+    # elif status == "Open"
+    #     if 
     return render_template(
         "detail.html", event=event, commentForm=commentForm, orderForm=orderForm
     )
@@ -36,7 +41,8 @@ def create():
             event_image = db_file_path,
             event_StartDateTime = form.startDateTime.data,
             event_EndDateTime = form.endDateTime.data,
-            # event_price = form.price.data,
+            event_TicketPrice = form.price.data,
+            event_Status = form.status.data,
             event_TicketsAvailable = form.ticketsAvailable.data,
             user=current_user
         )

@@ -1,3 +1,4 @@
+from cgi import print_exception
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField
@@ -47,10 +48,11 @@ class EventForm(FlaskForm):
             FileAllowed(ALLOWED_FILE, message="Only supports png,jpg,JPG,PNG"),
         ],
     )
-#   price = DecimalField("Single Ticket Price", places=2, validators=[InputRequired()])
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
   ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired()])
+  price = StringField("Individual Ticket Price", validators=[InputRequired()])
+  status = StringField("Event Status", validators=[InputRequired()])
   submit = SubmitField("Create")
 
 class CommentForm(FlaskForm):

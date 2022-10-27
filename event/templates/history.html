@@ -10,7 +10,11 @@
           <h4 class="booking_title">My bookings</h4>
           <div class="card-group row">
             {% for event in myevents %}
-            <!-- <p>{{event.event_name}}</p> -->
+
+            <!-- start card -->
+          {% include 'card.html' %}
+          <!-- end card -->
+            <!-- <p>{{event.event_name}}</p>
             <div class="col-md-4 com-sm-6">
                <div class="card">
                   <img class="card-img-top"
@@ -23,7 +27,10 @@
                      <a href = "{{url_for('event.show', id=event.event_id)}}" class ="btn btn-danger"> View Details </a>   
                   </div>
                </div>
-            </div>
+            </div> -->
+
+
+
             {% endfor %}
          </div>
         </div>

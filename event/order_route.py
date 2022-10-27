@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
-from .models import Event, Order, EventStatus, User
+from .models import Event, Order, User
 from flask_login import login_required, current_user
 from .forms import OrderForm
 from datetime import datetime
@@ -17,19 +17,43 @@ def place(id):
     form = OrderForm()
     user=current_user
     if form.validate_on_submit():
-        order = Order( # from models
+        # we have a valid number of tickets need to check if it changes event status
+        tickets_ordered = form.order_num_tickets.data # say 10
+        # query avaliable tickets from event
+        event = Event.query.filter_by(event_id=id).first()
+        tickets_aval = event.event_TicketsAvailable # say 1000
+        # check that ordered tickets are less than or equal avaliable
+        if tickets_ordered <= tickets_aval: # 10 <= 1000
+            # can place order
+            new_tickets_aval = tickets_aval - tickets_ordered
+            # first it to update event in db with new avaliable tickets
+            event.event_TicketsAvailable = new_tickets_aval
+            if tickets_ordered == tickets_aval:
+                # print("got here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                # print(tickets_ordered)
+                # print(tickets_aval)
+                event.event_Status = "Sold Out"
+                db.session.commit()
+            db.session.commit()
+
+            # place order, give ref
+            order = Order( # from models
             order_numTickets = form.order_num_tickets.data,
             order_dateTime = datetime.now(),
             user_id=user.id,
             event_id=id,
-        )
-        db.session.add(order) # add the object to the db session
-        db.session.commit() # commit to the database
-        print("Successfully place new order", "success")
-        orderRef = str(Order.query.filter_by().first().order_RefNumber)
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+ str(orderRef))
-        flash("Order Placed Successfully Ref: " + orderRef)
-        return redirect(url_for("main.index")) # Always end with redirect when form is valid
+            )
+            db.session.add(order) # add the object to the db session
+            db.session.commit() # commit to the database
+            print("Successfully place new order", "success")
+            flash("Order for " + str(order.order_numTickets) + " tickets placed successfully Ref: " + str(order.order_RefNumber)) #orderRef)
+            return redirect(url_for("main.index")) # Always end with redirect when form is valid
+        else: 
+            # send message and redirect to same place order page with flashed message
+            flash("Order Not Placed, there are only " + str(tickets_aval) + " tickets remaining")
+            return redirect(url_for('event.book', eventid=event.event_id)) 
+        
+
     return redirect(url_for("event.show", id=id))
 
 

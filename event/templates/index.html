@@ -1,5 +1,125 @@
 {% extends 'base.html' %}
+  {% block head %}
+    <!-- Sports cateory navbar -->
+    <nav class="navbar navbar-expand-lg" id="categoryNav">
+    
+      <div class="container-fluid">
+       
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <!-- Basketball -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Basketball
+              </a>
+              <ul class="dropdown-menu" >
+                {% for event in events %}
+                {% if event.event_type == "Basketball" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Boxing -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Boxing
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Boxing" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Cricket -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cricket
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Cricket" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Golf -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Golf
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Golf" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Rugby -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Rugby
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Rugby" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Soccer -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Soccer
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Soccer" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Tennis -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tennis
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Tennis" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- Etc -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Etc
+              </a>
+              <ul class="dropdown-menu">
+                {% for event in events %}
+                {% if event.event_type == "Etc" %}
+                <li><a class="dropdown-item" a href = "{{url_for('event.show', id=event.event_id)}}">{{event.event_name}}</a></li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+          <div>
+          
+      </div> 
+    </div>
+  </nav>
   
+  {% endblock %}
+
   {% block content %}
 
     <div class="container-fl">

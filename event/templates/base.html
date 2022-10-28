@@ -18,51 +18,51 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg">
-        <div class="container">
+        <div class="container-fluid">
           <a class="navbar-brand" href="{{ url_for('main.index') }}">
             <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo" width="230" height="40" id="logo" class="d-inline-block align-text-top">
           </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+            </ul>
+            <ul class="navbar-nav" id="">
+              <li class="nav-item">
+                <a class="nav-item nav-link" href="{{ url_for('main.index') }}">Home</a>
+              </li>
               {% if current_user.is_authenticated %}
+              <li class="nav-item">
                 <a class="nav-item nav-link" href="{{ url_for('event.create') }}">Create Event</a>
+              </li>
+              <li class="nav-item dropdown">
                 <a class="nav-item nav-link" href="{{ url_for('main.myEvents') }}">My Event's</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-item nav-link disabled text-muted" href="#">Welcome {{current_user.user_name}}</a>
-                {% else %}
+              </li>
+              {% else %}
+              <li class="nav-item">
                 <a class="nav-item nav-link" href="{{ url_for('auth.register') }}">Register</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">Log In</a>
-                {% endif %}
-
-                
-            </div>
+              </li>
+              {% endif %}
+            </ul>
+            
           </div>
         </div>
       </nav>
+      {% block head %}
+      {% endblock %}
     </header>
-          <div class="row row-maincategory">
-        <div class="row-category col-sm-6 col-lg-8">
-          
-          <button type="button" class="category "><a href="detail.html" class="category-links">NRL</a></button>
-          <button type="button" class="category  "><a href="detail.html" class="category-links">Boxing</a></button>
-          <button type="button" class="category  "><a href="detail.html" class="category-links">Tennis</a></button>
-          <button type="button" class="category "><a href="detail.html" class="category-links">Rugby</a></button>
-        </div>
-        <form class="d-flex col-sm-6  col-lg-4" role="search">
-        
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search the event"
-              aria-label="Search"
-            />
-            <button class="btn searchbtn" type="submit">
-              Search
-            </button>
-        </form>
-      </div>
 
+   
     {% block content %}
     {% endblock %}
     

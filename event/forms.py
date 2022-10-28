@@ -7,6 +7,8 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRang
 
 ALLOWED_FILE = {"PNG", "JPG", "JPEG", "png", "jpg", "jpeg"}
 STATUS_CHOICES = [("Open", "Open"), ("Unpublished", "Unpublished"), ("Sold Out", "Sold Out"), ("Cancelled", "Cancelled")]
+TYPE_CHOICES = [('Basketball', 'Basketball'), ('Boxing', 'Boxing'), ('Cricket', 'Cricket'), ('Golf', 'Golf'), ('Rugby', 'Rugby'), 
+    ('Soccer', 'Soccer'), ('Tennis', 'Tennis'), ('Etc', 'Etc')]
 class LoginForm(FlaskForm):
     name = StringField("User Name", validators=[InputRequired()])
     password = PasswordField("Password", validators=[InputRequired()])
@@ -37,7 +39,7 @@ class EventForm(FlaskForm):
   name = StringField("Event Name", validators=[InputRequired()])
   # adding two validators, one to ensure input is entered and other to check if the
   # description meets the length requirements
-  type = StringField("Event Type", validators=[InputRequired()])
+  type = SelectField("Event Type", choices=TYPE_CHOICES, validators=[InputRequired()])
   location = StringField("Location", validators=[InputRequired()])
   rating = StringField("Rating", validators=[InputRequired()])
   description = TextAreaField("Description", validators=[InputRequired()])

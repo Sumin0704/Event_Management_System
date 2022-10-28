@@ -1,13 +1,15 @@
+from turtle import st
 from flask import Blueprint, render_template, session, request, redirect, url_for
 from .models import Event
 from flask_login import login_required, current_user
+from .forms import EventForm
 
 mainbp = Blueprint("main",__name__)
 
 
 @mainbp.route("/")
 def index():
-    events = Event.query.all()
+    events = Event.query.filter(Event.event_Status.in_(('Open', 'Sold Out', 'Cancelled')))
     return render_template("index.html", events=events)
 
 @mainbp.route("/myevents")

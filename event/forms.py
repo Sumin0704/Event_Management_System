@@ -1,12 +1,12 @@
 from cgi import print_exception
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField, FileRequired
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField, SelectField
+from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRange
 
 
 ALLOWED_FILE = {"PNG", "JPG", "JPEG", "png", "jpg", "jpeg"}
-
+STATUS_CHOICES = [("Open", "Open"), ("Unpublished", "Unpublished"), ("Sold Out", "Sold Out"), ("Cancelled", "Cancelled")]
 class LoginForm(FlaskForm):
     name = StringField("User Name", validators=[InputRequired()])
     password = PasswordField("Password", validators=[InputRequired()])
@@ -50,9 +50,9 @@ class EventForm(FlaskForm):
     )
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
-  ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired()])
+  ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
   price = StringField("Individual Ticket Price", validators=[InputRequired()])
-  status = StringField("Event Status", validators=[InputRequired()])
+  status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
   submit = SubmitField("Create")
 
 class CommentForm(FlaskForm):

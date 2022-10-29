@@ -15,11 +15,11 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     user_name = StringField("User Name", validators=[InputRequired()])
+    user_address = StringField("User Address", validators=[InputRequired()])
+    user_phone = StringField('User Phone' , validators=[InputRequired()])
     email_id = StringField(
         "Email Address", validators=[Email("Please enter a valid email")]
     )
-    user_address = StringField("User Address", validators=[InputRequired()])
-    user_phone = StringField("User Phone", validators=[InputRequired()])
     # linking two fields - password should be equal to data entered in confirm
     password = PasswordField(
         "Password",
@@ -28,6 +28,7 @@ class RegisterForm(FlaskForm):
             EqualTo("confirm", message="Passwords should match"),
         ],
     )
+    render_kw={'style':'font-size:150%'}
     confirm = PasswordField("Confirm Password")
     # submit button
     submit = SubmitField("Register")

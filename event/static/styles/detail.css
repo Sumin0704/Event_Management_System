@@ -13,6 +13,14 @@ img.d-block.w-100 {
   justify-content: flex-end;
   margin-top: 10px;
 }
+
+.btn-book{
+  background-color: coral;
+  margin-left: 10px;
+  width: 30%;
+  color: #ffffff;
+}
+
 .subscribebtn {
   border-radius: 4px;
   background-color: coral;
@@ -254,9 +262,39 @@ li {
   grid-area: edit;
 
 }
+.btn-primary{
+  float:right
+}
+.form-control-label{
+  margin-bottom: 10px;
+  font-size: 20px
+  
+}
 .item7 {
   grid-area: back-book;
+  color:coral;
+  font-size: 20px;
+  font-weight:bold;
+  width: 20%;
+  margin-bottom: 20px
 }
+.form-control{
+  
+  margin-top:10px
+}
+
+.btn{
+  background-color: coral;
+  color:white;
+  border: none;
+  margin-top:10px;
+  margin-bottom: 20px
+}
+
+.border{
+  min-height: auto;
+}
+
 .list-title {
   text-align: left;
   font-size: 20px;
@@ -296,7 +334,11 @@ li {
 
 .comment {
   margin: 0px;
+  color: coral;
+  font-weight: bold;
+  font-size: 20px
 }
+
 .card.comment {
   height: auto;
   background-color: white;

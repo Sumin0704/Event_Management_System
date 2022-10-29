@@ -39,9 +39,6 @@ def create_app():
     from . import auth
     app.register_blueprint(auth.mainbp)
 
-    from . import order_route
-    app.register_blueprint(order_route.mainbp)
-
     return app
 
 @app.errorhandler(404)

@@ -7,10 +7,11 @@ class User(db.Model, UserMixin):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(100), index=True, unique=True, nullable=False)
-    user_email_address = db.Column(db.String(100), index=True, unique=True, nullable=False)
-    user_password_hash = db.Column(db.String(255), nullable=False)
     user_address = db.Column(db.String(255), nullable=True) # to do
     user_phone = db.Column(db.String(255), unique=True, nullable=True) # to do
+    user_email_address = db.Column(db.String(100), index=True, unique=True, nullable=False)
+    user_password_hash = db.Column(db.String(255), nullable=False)
+    
 
     # Adding the Foreign key
     comments = db.relationship("Comment", backref="user") # means I can do user.comments to get all comments for a user

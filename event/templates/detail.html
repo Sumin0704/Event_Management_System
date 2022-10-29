@@ -44,13 +44,10 @@
 
 
     <!-- <p>{{event.event_id}}</p> -->
-    <a href="{{ url_for('event.book', eventid=event.event_id) }}">Book Event</a>
+    <a class= " btn btn-book" href="{{ url_for('event.book', eventid=event.event_id) }}">Book Event</a>
     <div class="item5">
       <div class="comment">                      
         <div class="card comment">
-            <div class="p-3">
-                <h5>Comments</h5>
-            </div>
             <div class="row border-bottom">
               {{wtf.render_form(commentForm,"/events/{0}/comment".format(event.event_id))}} 
               {% for comment in event.comments %} 

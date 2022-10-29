@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
-from .models import Event, Comment
+from flask import Blueprint, render_template, session, request, redirect, url_for, flash
+from .models import Event, Comment, Order
 from .forms import EventForm, CommentForm, OrderForm
 from . import db
 import os
@@ -90,9 +90,50 @@ def check_upload_file(form):
     return db_upload_path
 
 
-@mainbp.route("/book/<eventid>", methods=["GET", "POST"])
+@mainbp.route("/<id>/book", methods=["GET", "POST"])
 @login_required
-def book(eventid):
+def book(id):
     orderForm = OrderForm()
-    eventinfo = Event.query.filter_by(event_id=eventid).first()
-    return render_template('book_tickets.html',eventinfo=eventinfo, orderForm=orderForm)
+    user=current_user
+    
+
+    if orderForm.validate_on_submit():
+        # we have a valid number of tickets need to check if it changes event status
+        tickets_ordered = orderForm.order_num_tickets.data # say 10
+        # query avaliable tickets from event
+        event = Event.query.filter_by(event_id=id).first()
+        tickets_aval = event.event_TicketsAvailable # say 1000
+        if event.event_Status == "Open":
+            # check that ordered tickets are less than or equal avaliable
+            if tickets_ordered <= tickets_aval: # 10 <= 1000
+                # can place order
+                new_tickets_aval = tickets_aval - tickets_ordered
+                # first it to update event in db with new avaliable tickets
+                event.event_TicketsAvailable = new_tickets_aval
+                if tickets_ordered == tickets_aval:
+                    # print("got here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    # print(tickets_ordered)
+                    # print(tickets_aval)
+                    event.event_Status = "Sold Out"
+                    db.session.commit()
+                db.session.commit()
+
+                # place order, give ref
+                order = Order( # from models
+                order_numTickets = orderForm.order_num_tickets.data,
+                order_dateTime = datetime.now(),
+                user_id=user.id,
+                event_id=id,
+                )
+                db.session.add(order) # add the object to the db session
+                db.session.commit() # commit to the database
+                print("Successfully place new order", "success")
+                flash("Order for " + str(order.order_numTickets) + " tickets placed successfully Ref: " + str(order.order_RefNumber)) #orderRef)
+                return redirect(url_for("main.index")) # Always end with redirect when form is valid
+            else: 
+                # send message and redirect to same place order page with flashed message
+                flash("Order Not Placed, there are only " + str(tickets_aval) + " tickets remaining")
+                return redirect(url_for('event.show', id=event.event_id)) 
+        else:
+            flash("Order Not Placed, " + str(event.event_name)+  " is " + str(event.event_Status))
+    return redirect(url_for("event.show", id=id))

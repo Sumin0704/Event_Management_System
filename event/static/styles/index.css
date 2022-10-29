@@ -267,4 +267,30 @@ li {
   background: seashell;
   color: coral;
 }
+.card-content{
+  justify-content: space-between;
+}
 
+.card-detail{
+  font-weight: 450;
+}
+
+.viewbtn {
+  border-radius: 4px;
+  background-color: coral;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px;
+  width: 120px;
+  margin: 5px;
+  height: 30px;
+}
+
+.viewbtn:hover  {
+  border-color: coral;
+  color:coral;
+}
+.card-footer {
+  background-color: #fff;
+}

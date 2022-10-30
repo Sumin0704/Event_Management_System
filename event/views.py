@@ -1,4 +1,3 @@
-from turtle import st
 from flask import Blueprint, render_template, session, request, redirect, url_for
 from .models import Event
 from flask_login import login_required, current_user

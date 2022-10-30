@@ -25,6 +25,7 @@ def create_app():
 
     # Configue and initialise DB
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sport.sqlite"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= False 
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     db.init_app(app)
 

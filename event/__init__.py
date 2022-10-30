@@ -9,19 +9,12 @@ app = Flask(__name__)
 
 def create_app():
     
-
-    # access to authentication
-    login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
-    login_manager.init_app(app)
-
     from .models import User
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
-
+   
     bootstrap = Bootstrap5(app)
+
+    app.secret_key = 'junk'
 
     # Configue and initialise DB
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sport.sqlite"
@@ -29,7 +22,14 @@ def create_app():
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     db.init_app(app)
 
-    app.secret_key = 'junk'
+    # access to authentication
+    login_manager = LoginManager()
+    login_manager.login_view = "auth.login"
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     from . import views
     app.register_blueprint(views.mainbp)

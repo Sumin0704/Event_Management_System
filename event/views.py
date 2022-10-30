@@ -6,10 +6,10 @@ from flask_login import login_required, current_user
 mainbp = Blueprint("main",__name__)
 
 
-@mainbp.route("/")
-def index():
-    events = Event.query.filter(Event.event_Status.in_(('Open', 'Sold Out', 'Cancelled')))
-    return render_template("index.html", events=events)
+# @mainbp.route("/")
+# def index():
+#     events = Event.query.filter(Event.event_Status.in_(('Open', 'Sold Out', 'Cancelled')))
+#     return render_template("index.html", events=events)
 
 @mainbp.route("/myevents")
 @login_required

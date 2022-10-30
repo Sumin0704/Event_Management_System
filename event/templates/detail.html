@@ -62,8 +62,8 @@
               {{wtf.render_form(commentForm,"/events/{0}/comment".format(event.event_id))}} 
               {% for comment in event.comments %} 
               <div class="col-md-12">  
-                  <b>{{ comment.user.user_name }}</b> <span class="ml-2 text-muted tex text-justify: right">{{ comment.comment_created_at }}</span>
-                  <p>{{ comment.comment_text }}</p>  
+                  <b>{{ comment.user.user_name }}</b> <span class="ml-2 text-muted tex time-made">{{ comment.comment_created_at }}</span>
+                  <p class="comment-text">{{ comment.comment_text }}</p>  
               </div>  
               {% endfor %}
             </div>

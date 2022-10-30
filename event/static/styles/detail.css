@@ -13,6 +13,19 @@ img.d-block.w-100 {
   justify-content: flex-end;
   margin-top: 10px;
 }
+.comment-text{
+  color: black;
+  font-size: 20px;
+  
+}
+.time-made{
+  float: right;
+  font-size: 13px;
+  display: block;
+  overflow: hidden;
+  max-width: 14.45ch;
+  white-space: nowrap;
+}
 
 .btn-book{
   background-color: coral;

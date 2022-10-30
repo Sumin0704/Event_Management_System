@@ -1,0 +1,90 @@
+.btn{
+    border-radius: 4px;
+    background-color: coral;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left:20px;
+    height: 30px;
+}
+
+.card{
+    justify-content: center;
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:30px;
+    padding-bottom:30px
+}
+.user{
+    margin-left: auto;
+    margin-right:auto
+}
+
+.form{
+    color: coral;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.border{
+    margin: 20px;
+   
+}
+
+.form-group{
+    margin: 10px 20px 10px 20px;
+}
+
+h4{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom: 30px;
+    color: coral;
+    font-size: 25px
+}
+
+h2{
+    text-align: center;
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+p{
+    text-align:center;
+    margin-bottom: 30px
+}
+.container-fluid{
+    text-align:left
+}
+
+.register{
+    margin-left: auto;
+    margin-right: auto;
+    margin: 4px, 4px
+}
+
+h1{
+    margin-bottom: 0px;
+    color: coral;
+    font-size: 40px
+}
+
+h2{
+    margin-left: 20px;
+    color: coral;
+    font-size: 40px
+}
+
+p{
+    margin-bottom: 10px;
+    color: black;
+    font-size: 20px;
+    margin-left:20px;
+}

@@ -1,0 +1,29 @@
+<div class="col-lg-4 com-sm-6">
+    <div class="card">
+       <img class="card-img-top"
+          src="{{ event.event_image }}" alt="{{ event.event_name }}">
+       <div class="card-body">
+         <div class="card-content container-fluid p-1 d-flex align-items-center">
+            <h5 class="card-title">{{ event.event_name }}</h5>
+            {% if event.event_Status == 'Open' %}
+            <span class="badge bg-success"> {{ event.event_Status }}</span>
+            {% elif event.event_Status == 'Sold Out' %}
+            <span class="badge bg-danger"> {{ event.event_Status }}</span>
+            {% elif event.event_Status == 'Cancelled' %}
+            <span class="badge bg-warning"> {{ event.event_Status }}</span>
+            {% else %}
+            <span class="badge bg-secondary"> {{ event.event_Status }}</span>
+            {% endif %}
+         </div>
+         <div class="container-fluid p-1 d-flex">
+            <span class="card-detail">Location: {{ event.event_location }}</span> 
+         </div>
+         <div class="container-fluid p-1 d-flex">
+            <span class="card-detail">Starts at: {{ event.event_StartDateTime }}</span>
+         </div>
+       </div>
+       <div class="card-footer">
+          <a href = "{{url_for('event.show', id=event.event_id)}}" class ="btn viewbtn"> View Details </a>   
+       </div>
+    </div>
+ </div>

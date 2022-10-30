@@ -20,19 +20,21 @@ def register():
         uname = register.user_name.data
         pwd = register.password.data
         email = register.email_id.data
+        address = register.user_address.data
+        phone = register.user_phone.data
         # check if a user exists
-        u1 = User.query.filter_by(name=uname).first()
+        u1 = User.query.filter_by(user_name=uname).first()
         if u1:
             flash("User name already exists, please login")
             return redirect(url_for("auth.login"))
         # don't store the password - create password hash
         pwd_hash = generate_password_hash(pwd)
         # create a new user model object
-        new_user = User(name=uname, password_hash=pwd_hash, email_address=email)
+        new_user = User(user_name=uname, user_password_hash=pwd_hash, user_email_address=email, user_address=address, user_phone=phone)
         db.session.add(new_user)
         db.session.commit()
         # commit to the database and redirect to HTML page
-        return redirect(url_for("main.index"))
+        return redirect(url_for("auth.login"))
     # the else is called when there is a get message
     else:
         return render_template("user.html", form=register, heading="Register")
@@ -44,15 +46,15 @@ def login():
     error = None
     if login_form.validate_on_submit() == True:
         # get the username and password from the database
-        user_name = login_form.name.data
-        password = login_form.password.data
-        u1 = User.query.filter_by(name=user_name).first()
+        user_name = login_form.name.data # get username from form
+        password = login_form.password.data # get password from form
+        u1 = User.query.filter_by(user_name=user_name).first() # query the user with that username
         # if there is no user with that name
         if u1 is None:
             error = "Incorrect user name"
         # check the password - notice password hash function
         elif not check_password_hash(
-            u1.password_hash, password
+            u1.user_password_hash, password
         ):  # takes the hash and password
             error = "Incorrect password"
         if error is None:
@@ -68,4 +70,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("main.index"))
+    return redirect(url_for("auth.login"))

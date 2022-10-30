@@ -164,8 +164,8 @@ li {
 }
 .btn.searchbtn {
   border: 1px solid coral;
-  background-color: coral;
-  color: white;
+  background-color: #fff;
+  color: coral;
   padding: 0px 6px;
   font-size: 15px;
   font-weight: 300;
@@ -190,10 +190,6 @@ li {
 .row-category {
   display: flex;
   justify-content: space-between;
-}
-.d-flex {
-  display: inline-block;
-  justify-content: center;
 }
 
 .navbar.navbar-expand-lg {
@@ -228,4 +224,73 @@ li {
     margin-right: 0px;
     
   }
+}
+
+.error{
+  display: flex;
+  justify-content: center;
+  height:30%;
+  width: 30%;
+}
+
+.errorMessage {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#categoryNav{
+  background-color: #fff;
+}
+
+.dropdown-toggle {
+  color: coral;
+}
+.dropdown-toggle:hover{
+  background: seashell;
+  color: coral;
+  border-radius: 10px;
+}
+
+.dropdown-toggle:focus{
+  background: seashell;
+  color: coral;
+  border-radius: 10px;
+}
+
+.dropdown-item{
+  color: coral;
+}
+
+.dropdown-item:hover{
+  background: seashell;
+  color: coral;
+}
+.card-content{
+  justify-content: space-between;
+}
+
+.card-detail{
+  font-weight: 450;
+}
+
+.viewbtn {
+  border-radius: 4px;
+  background-color: coral;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  padding: 5px;
+  width: 120px;
+  margin: 5px;
+  height: 30px;
+}
+
+.viewbtn:hover  {
+  border-color: coral;
+  color:coral;
+}
+.card-footer {
+  background-color: #fff;
 }

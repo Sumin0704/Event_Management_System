@@ -1,3 +1,4 @@
+from email.policy import default
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField, SelectField
@@ -62,6 +63,5 @@ class CommentForm(FlaskForm):
   submit = SubmitField('Post', id="comment_submit")
 
 class OrderForm(FlaskForm):
-    class_="ticket_picker"
-    order_num_tickets = DecimalField("Tickets",validators=[InputRequired()], default=1 )
+    order_num_tickets = IntegerField("Tickets",validators=[InputRequired()], default=1)
     submit = SubmitField('Order', id="order_submit")

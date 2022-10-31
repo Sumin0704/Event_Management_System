@@ -109,12 +109,11 @@ def book(id):
                 # can place order
                 new_tickets_aval = tickets_aval - tickets_ordered
                 # first it to update event in db with new avaliable tickets
-                print(tickets_ordered)
-                print(tickets_aval)
                 event.event_TicketsAvailable = new_tickets_aval
                 if tickets_ordered == tickets_aval:
                     # print("got here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    
+                    # print(tickets_ordered)
+                    # print(tickets_aval)
                     event.event_Status = "Sold Out"
                     db.session.commit()
                 db.session.commit()

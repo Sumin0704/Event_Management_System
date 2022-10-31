@@ -31,4 +31,48 @@ li{
     color: white;
 }
 
+#order_num_tickets{
+    max-width: 50%;
+}
+
+#order_submit, #comment_submit{
+    background-color: white !important;
+    color: rgb(255, 99, 42);
+    border: 1px solid rgb(255, 99, 42)!important;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+#order_submit:hover, #comment_submit:hover{
+    background-color: rgb(255, 99, 42) !important;
+    color: white;
+    border: 1px solid rgb(255, 99, 42)!important;
+
+}
+
+
+h3{
+    text-align: left;
+}
+
+
+.card{
+    height: auto;
+    min-height: 540px;
+}
+
+
+
+@media screen and (max-width: 760px) {
+    #order_num_tickets{
+        max-width: 100%;
+    }
+
+    .widget-pane{
+        text-align: left;
+    }
+}
+
 

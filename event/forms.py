@@ -58,9 +58,10 @@ class EventForm(FlaskForm):
   submit = SubmitField("Create")
 
 class CommentForm(FlaskForm):
-  text = TextAreaField('Comment', [InputRequired()])
-  submit = SubmitField('Post')
+  text = TextAreaField('Comment', [InputRequired()], id="comment_input")
+  submit = SubmitField('Post', id="comment_submit")
 
 class OrderForm(FlaskForm):
-    order_num_tickets = IntegerField("Ticket Quantity",validators=[InputRequired()])
-    submit = SubmitField('Order')
+    class_="ticket_picker"
+    order_num_tickets = DecimalField("Tickets",validators=[InputRequired()], default=1 )
+    submit = SubmitField('Order', id="order_submit")

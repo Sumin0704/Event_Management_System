@@ -43,7 +43,7 @@
                 <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
               </li>
               <li class="nav-item">
-                <a class="nav-item nav-link disabled text-muted" href="#">Welcome {{current_user.user_name}}</a>
+                <a class="nav-item nav-link disabled "  style="color:white" href="#">Welcome {{current_user.user_name}}</a>
               </li>
               {% else %}
               <li class="nav-item">

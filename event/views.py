@@ -8,6 +8,7 @@ mainbp = Blueprint("main",__name__)
 @mainbp.route("/")
 def index():
     events = Event.query.filter(Event.event_Status.in_(('Open', 'Sold Out', 'Cancelled')))
+    # order the filter by most recently added or whatever
     return render_template("index.html", events=events)
 
 @mainbp.route("/myevents")

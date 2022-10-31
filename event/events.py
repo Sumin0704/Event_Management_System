@@ -1,6 +1,7 @@
+from multiprocessing import synchronize
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
 from .models import Event, Comment, Order
-from .forms import EventForm, CommentForm, OrderForm
+from .forms import EventForm, CommentForm, OrderForm, EditEventForm, LoginForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -54,6 +55,61 @@ def create():
         # Always end with redirect when form is valid
         return redirect(url_for("main.index"))
     return render_template("create_form.html", form=form)
+
+
+@mainbp.route("/edit/<id>", methods=["GET","POST"])
+@login_required # Need to make this also only the owner
+def editEvent(id):
+    print("Method type: ", request.method)
+    preFilledData = Event.query.filter_by(event_id=id).first()
+    # here need to make sure the logged in user is same as preFilledData.event_creator
+    # if not logged in as creator return auth.login
+    # else continue with everything below
+    if preFilledData.event_creator != current_user.id:
+        flash("cannot edit an event that you did not create")
+        return redirect(url_for("auth.login"))
+    else:
+        form = EditEventForm()
+        if form.validate_on_submit():
+            # If a new image was supplied, update it (need to check since it is not mandatory
+            # to supply an image on the EditEventForm, therefore check_upload_file would write an
+            # empty string to the event's image database column)
+            if (form.image.data is not None): # they have chosen to change the image
+                # call the function that checks and returns image
+                db_file_path = check_upload_file(form)
+                Event.query.filter_by(event_id=id).update(
+                    {'event_image': db_file_path}, synchronize_session='evaluate'
+                )
+            # update rest of event separately to the image
+            Event.query.filter_by(event_id=id).update(
+                {'event_name':form.name.data,
+                'event_type':form.type.data,
+                'event_location':form.location.data,
+                'event_rating':form.rating.data,
+                'event_description':form.description.data,
+                'event_StartDateTime':form.startDateTime.data,
+                'event_EndDateTime':form.endDateTime.data,
+                'event_TicketPrice':form.price.data,
+                'event_Status':form.status.data,
+                'event_TicketsAvailable':form.ticketsAvailable.data}, synchronize_session='evaluate'
+            )
+            print(form.ticketsAvailable.data)
+            db.session.commit()
+            print("Successfully created new event", "success")
+            # Always end with redirect when form is valid
+            return redirect(url_for("main.myEvents"))
+        else:
+            form.name.data = preFilledData.event_name
+            form.type.data = preFilledData.event_type
+            form.location.data = preFilledData.event_location
+            form.rating.data = preFilledData.event_rating
+            form.description.data = preFilledData.event_description
+            form.startDateTime.data = preFilledData.event_StartDateTime
+            form.endDateTime.data = preFilledData.event_EndDateTime
+            form.price.data = preFilledData.event_TicketPrice
+            form.status.data = preFilledData.event_Status
+            form.ticketsAvailable.data = preFilledData.event_TicketsAvailable
+        return render_template("editevent.html", form=form)
 
 @mainbp.route("/<id>/comment", methods = ['GET', 'POST'])
 @login_required

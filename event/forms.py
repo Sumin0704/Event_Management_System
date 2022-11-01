@@ -54,7 +54,7 @@ class EventForm(FlaskForm):
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
   ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
-  price = DecimalField("Individual Ticket Price", validators=[InputRequired()])
+  price = DecimalField("Individual Ticket Price", validators=[InputRequired(), NumberRange(min=0)])
   status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
   submit = SubmitField("Create")
 

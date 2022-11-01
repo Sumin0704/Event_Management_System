@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/form.html" as wtf %}
+{% block content %}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/forms.css')}}" />
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12 border">
+
+        <h2>Update my Event</h2>
+      
+        {{wtf.render_form(form)}}
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

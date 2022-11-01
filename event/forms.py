@@ -54,10 +54,31 @@ class EventForm(FlaskForm):
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
   ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
-  price = StringField("Individual Ticket Price", validators=[InputRequired()])
+  price = DecimalField("Individual Ticket Price", validators=[InputRequired()])
   status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
   submit = SubmitField("Create")
 
+class EditEventForm(FlaskForm):
+  name = StringField("Event Name", validators=[InputRequired()])
+  # adding two validators, one to ensure input is entered and other to check if the
+  # description meets the length requirements
+  type = SelectField("Event Type", choices=TYPE_CHOICES, validators=[InputRequired()])
+  location = StringField("Location", validators=[InputRequired()])
+  rating = StringField("Rating", validators=[InputRequired()])
+  description = TextAreaField("Description", validators=[InputRequired()])
+  image = FileField(
+        "Destination Image",
+        validators=[
+            FileAllowed(ALLOWED_FILE, message="Only supports png,jpg,JPG,PNG"),
+        ],
+    )
+  startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
+  endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
+  ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
+  price = DecimalField("Individual Ticket Price", validators=[InputRequired()])
+  status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
+  submit = SubmitField("Update Event")
+  
 class CommentForm(FlaskForm):
   text = TextAreaField('Comment', [InputRequired()], id="comment_input")
   submit = SubmitField('Post', id="comment_submit")

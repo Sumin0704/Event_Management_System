@@ -3,7 +3,6 @@ from flask_wtf.file import FileAllowed, FileField, FileRequired
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField,DateTimeLocalField, IntegerField, DecimalField, SelectField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, NumberRange
 
-
 ALLOWED_FILE = {"PNG", "JPG", "JPEG", "png", "jpg", "jpeg"}
 STATUS_CHOICES = [("Open", "Open"), ("Unpublished", "Unpublished"), ("Sold Out", "Sold Out"), ("Cancelled", "Cancelled")]
 TYPE_CHOICES = [('Basketball', 'Basketball'), ('Boxing', 'Boxing'), ('Cricket', 'Cricket'), ('Golf', 'Golf'), ('Rugby', 'Rugby'), 
@@ -53,7 +52,7 @@ class EventForm(FlaskForm):
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
   ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
-  price = StringField("Individual Ticket Price", validators=[InputRequired()])
+  price = DecimalField("Individual Ticket Price", validators=[InputRequired()])
   status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
   submit = SubmitField("Create")
 
@@ -74,7 +73,7 @@ class EditEventForm(FlaskForm):
   startDateTime = DateTimeLocalField("Start Date and Time", format="%Y-%m-%dT%H:%M", validators=[InputRequired()])
   endDateTime = DateTimeLocalField("End Date and Time", format="%Y-%m-%dT%H:%M",validators=[InputRequired()])
   ticketsAvailable = IntegerField("Total Available Tickets",validators=[InputRequired(), NumberRange(min=0)])
-  price = StringField("Individual Ticket Price", validators=[InputRequired()])
+  price = DecimalField("Individual Ticket Price", validators=[InputRequired()])
   status = SelectField("Event Status", choices=STATUS_CHOICES, validators=[InputRequired()])
   submit = SubmitField("Update Event")
 

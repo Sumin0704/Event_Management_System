@@ -2,6 +2,13 @@
   margin: 20px;
 }
 
+html{
+  min-height: 100%;
+}
+body{
+  position: relative;
+}
+
 
 /* Fix the image size when carousel slides are chaged */
 
@@ -56,19 +63,24 @@ input.form-control.me-2 {
   margin-left: 0px;
 }
 
-.footer {
+footer {
   color: #f0f9ff;
   background-color: #282d32;
+  position: absolute;
+  width: 100%;
+  min-height: 120px;
+  bottom: 0px;
+  left: 0;
 }
 
-.footer h3 {
+footer h3 {
   margin-top: 0;
   margin-bottom: 12px;
   font-weight: bold;
   font-size: 16px;
 }
 
-.footer ul {
+footer ul {
   padding: 0;
   list-style: none;
   line-height: 1.6;
@@ -76,13 +88,13 @@ input.form-control.me-2 {
   margin-bottom: 0;
 }
 
-.footer ul a {
+footer ul a {
   color: inherit;
   text-decoration: none;
   opacity: 0.8;
 }
 
-.footer ul a:hover {
+footer ul a:hover {
   opacity: 1;
 }
 .footercopyright {

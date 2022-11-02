@@ -2,21 +2,9 @@
   margin: 20px;
 }
 
-html{
-  min-height: 100%;
-}
-body{
-  position: relative;
-}
 
 
-/* Fix the image size when carousel slides are chaged */
 
-.footeremail {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
 .subscribebtn {
   border-radius: 4px;
   background-color: coral;
@@ -73,7 +61,7 @@ footer {
   left: 0;
 }
 
-footer h3 {
+.footer h3 {
   margin-top: 0;
   margin-bottom: 12px;
   font-weight: bold;

@@ -3,13 +3,8 @@
 }
 
 
-/* Fix the image size when carousel slides are chaged */
 
-.footeremail {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
+
 .subscribebtn {
   border-radius: 4px;
   background-color: coral;
@@ -55,11 +50,14 @@ input.form-control.me-2 {
   margin: 5px;
   margin-left: 0px;
 }
-
+.body{
+  margin:0
+}
 .footer {
   color: #f0f9ff;
   background-color: #282d32;
 }
+
 
 .footer h3 {
   margin-top: 0;

@@ -15,3 +15,9 @@ def index():
 def myEvents():
     myevents = Event.query.filter_by(event_creator=current_user.id)
     return render_template('history.html',myevents=myevents)
+
+@mainbp.route("/catagory/<name>", methods = ['GET'])
+def catagory(name):
+    print(name)
+    events = Event.query.filter(Event.event_Status.in_(('Open', 'Sold Out', 'Cancelled')))
+    return render_template("catagory.html", data = [name, events])

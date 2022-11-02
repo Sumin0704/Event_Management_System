@@ -3,7 +3,10 @@
 }
 
 
-
+.copyright{
+  margin-top: 20px;
+  font-size: 16px;
+}
 
 .subscribebtn {
   border-radius: 4px;
@@ -55,7 +58,7 @@ footer {
   color: #f0f9ff;
 
   background-color: coral;
-  height: 100px;
+  height: 60px;
 }
 
 footer p {

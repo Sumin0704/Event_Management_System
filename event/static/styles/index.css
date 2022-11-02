@@ -4,11 +4,7 @@
 
 
 /* Fix the image size when carousel slides are chaged */
-img.d-block.w-100 {
-  width: 800px;
-  height: 500px;
-  object-fit: fill;
-}
+
 .footeremail {
   display: flex;
   justify-content: flex-end;
@@ -95,8 +91,13 @@ input.form-control.me-2 {
 }
 
 .card {
-  height: 504px;
+  /* height: 504px; */
   margin-bottom: 10px;
+}
+
+.card img{
+  height: 20vw;
+  object-fit: cover;
 }
 .footerlist {
   margin: 0px 20px;
@@ -106,9 +107,7 @@ h3,
 li {
   text-align: center;
 }
-.card-img-top {
-  height: 300px;
-}
+
 .card-title.col.main {
   font-size: 20px;
   font-weight: bold;
@@ -224,6 +223,11 @@ li {
     margin-right: 0px;
     
   }
+
+  .card img{
+    height: 20vh;
+    object-fit: cover;
+  }
 }
 
 .error{
@@ -244,16 +248,16 @@ li {
   background-color: #fff;
 }
 
-.dropdown-toggle {
+.cat-nav {
   color: coral;
 }
-.dropdown-toggle:hover{
+.cat-nav:hover{
   background: seashell;
   color: coral;
   border-radius: 10px;
 }
 
-.dropdown-toggle:focus{
+.cat-nav:focus{
   background: seashell;
   color: coral;
   border-radius: 10px;

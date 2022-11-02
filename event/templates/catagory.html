@@ -4,7 +4,7 @@
     <nav class="navbar navbar-expand-lg" id="categoryNav">
     
       <div class="container-fluid">
-        {% if events %}
+        {% if data[1] %}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <!-- Basketball -->
@@ -94,17 +94,30 @@
         
         <!-- row 3 -->
         <div class="row row-title">
-          <h3 class="title">Upcoming Events</h3>
+          <h3 class="title">Upcoming {{data[0]}} Events</h3>
         </div>
         <!-- row 4 events cards -->
+        {% set ns = namespace(hasCards = false)%}
         <div class="card-group row">
-          {% for event in events %}
-          {% if events %}
+          {% for event in data[1] %}
+          {% if data[0] == 'All' or event.event_type == data[0] %}
           <!-- start card -->
+          {%if ns.hasCards == false %}
+          {%set ns.hasCards = true%}
+          {%endif%}
           {% include 'card.html' %}
           <!-- end card -->
           {% endif %}
           {% endfor %}
+          {%if ns.hasCards == false %}
+          <div class="container-fluid">
+            <div class="row mt-3 mb-3">
+              <div class="col-md-12">
+                <div class="alert alert-info">No Events of the specified type have been found</div> <!--display as alert-->
+            </div>
+          </div>
+        </div>
+        {%endif%}
        </div>
       </div>
     </div>

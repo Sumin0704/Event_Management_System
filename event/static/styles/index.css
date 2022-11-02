@@ -250,6 +250,7 @@ h3, li {
 
 .card-detail{
   font-weight: 450;
+  font-size: 14px;
 }
 
 .viewbtn {
@@ -270,4 +271,8 @@ h3, li {
 }
 .card-footer {
   background-color: #fff;
+}
+.card-title {
+  color:coral;
+  font-weight: 350;
 }

@@ -35,7 +35,7 @@ class Event(db.Model):
     
     # Adding the Foreign key
     event_creator = db.Column(db.Integer, db.ForeignKey("users.id"))
-    author = db.relationship("User", backref="event")
+    # author = db.relationship("User", backref="event")
     comments = db.relationship("Comment", backref="event") # means I can do event.comments to get all comments on an event
 
     def __repr__(self):

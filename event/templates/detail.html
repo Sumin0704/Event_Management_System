@@ -32,6 +32,13 @@
           <img class="card-img-top" src="{{event.event_image}}" alt="Title"
               >
           <div class="card-body">
+            {%if current_user.is_authenticated and current_user.id == event.event_creator%}
+            <div class="d-flex form-inline justify-content-end">
+              <a class="btn " id="order_submit"  href="{{url_for('event.editEvent', id=event.event_id)}}">
+              Edit
+              </a>
+            </div>
+          {%endif%}
               <h3 class="card-title">About This Event</h3>
               <div class="card-text row">
                   <p class="col-12 col-md-8">{{ event.event_description }}</p>

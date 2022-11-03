@@ -85,6 +85,13 @@ h3, li {
   font-size: 20px;
   font-weight: bold;
 }
+
+.card-title{
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+padding-bottom: 0.5rem;
+}
 .row.context.first {
   margin: 10px 0px 0px 0px;
 }

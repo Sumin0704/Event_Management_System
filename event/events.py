@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, flash
-from .models import Event, Comment, Order
+from .models import Event, Comment, Order, User
 from .forms import EventForm, CommentForm, OrderForm, EditEventForm
 from . import db
 import os
@@ -14,13 +14,9 @@ def show(id):
     commentForm = CommentForm()
     orderForm = OrderForm()
     event = Event.query.filter_by(event_id=id).first()
-    # status = event.event_Status
-    # if status == "Cancelled":
-    #     flash("This event has been cancelled and can no longer be booked")
-    # elif status == "Open"
-    #     if 
+    event_user = User.query.filter_by(id=event.event_creator).first()
     return render_template(
-        "detail.html", event=event, commentForm=commentForm, orderForm=orderForm
+        "detail.html", event=event, commentForm=commentForm, orderForm=orderForm, event_user=event_user
     )
 
 # Create the Sport event route

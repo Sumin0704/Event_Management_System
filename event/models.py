@@ -29,7 +29,7 @@ class Event(db.Model):
     event_image = db.Column(db.String(200), nullable=False)
     event_StartDateTime = db.Column(db.DateTime, nullable=False) # do this
     event_EndDateTime = db.Column(db.DateTime, nullable=False) # do this
-    event_TicketPrice = db.Column(db.String(200), nullable=False)
+    event_TicketPrice = db.Column(db.Integer, nullable=False)
     event_TicketsAvailable = db.Column(db.Integer, nullable=False) # do this
     event_Status = db.Column(db.String(200), nullable=False)
     

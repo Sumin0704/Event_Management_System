@@ -29,13 +29,12 @@ class Event(db.Model):
     event_image = db.Column(db.String(200), nullable=False)
     event_StartDateTime = db.Column(db.DateTime, nullable=False) # do this
     event_EndDateTime = db.Column(db.DateTime, nullable=False) # do this
-    event_TicketPrice = db.Column(db.Numeric(10,2), nullable=False)
+    event_TicketPrice = db.Column(db.String(200), nullable=False)
     event_TicketsAvailable = db.Column(db.Integer, nullable=False) # do this
     event_Status = db.Column(db.String(200), nullable=False)
     
     # Adding the Foreign key
     event_creator = db.Column(db.Integer, db.ForeignKey("users.id"))
-    author = db.relationship("User", backref="event")
     comments = db.relationship("Comment", backref="event") # means I can do event.comments to get all comments on an event
 
     def __repr__(self):
